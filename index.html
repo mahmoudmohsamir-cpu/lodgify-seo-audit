@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lodgify SEO & GEO Audit — April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--red:#FF3B59;--dark:#0F1117;--navy:#16213E;--gray-50:#F9FAFB;--gray-100:#F3F4F6;--gray-200:#E5E7EB;--gray-400:#9CA3AF;--gray-500:#6B7280;--gray-700:#374151;--gray-900:#111827;--green:#10B981;--amber:#F59E0B;--blue:#3B82F6;--purple:#8B5CF6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',sans-serif;color:var(--gray-900);background:#fff;line-height:1.55}
+
+/* ──── NAV ──── */
+nav{position:sticky;top:0;z-index:200;background:#fff;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;border-bottom:1px solid var(--gray-200);box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.nav-brand{color:var(--gray-700);font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.nav-links{display:flex;gap:.45rem;list-style:none}
+.nav-links a{color:var(--gray-700);text-decoration:none;font-size:.71rem;font-weight:600;letter-spacing:.01em;padding:.3rem .75rem .3rem .5rem;border:1.5px solid var(--gray-200);border-radius:8px;background:#F9FAFB;transition:all .15s;display:inline-flex;align-items:center;gap:.4rem}
+.nav-links a:hover{color:#fff;border-color:var(--red);background:var(--red)}
+.nav-links a:hover .nav-num{background:rgba(255,255,255,.25);color:#fff}
+.nav-num{background:var(--red);color:#fff;font-size:.58rem;font-weight:800;padding:.1rem .3rem;border-radius:4px;letter-spacing:.04em;flex-shrink:0}
+
+/* ──── PAGE SECTIONS ──── */
+.page{padding:4rem 5%;width:100%}
+.page:nth-child(odd){background:#fff}
+.page:nth-child(even){background:var(--gray-50)}
+.container{max-width:1180px;margin:0 auto}
+
+/* ──── HERO ──── */
+.hero{background:#fff;padding:4.5rem 5% 5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--gray-200)}
+.hero::after{content:'';position:absolute;top:-30%;right:-15%;width:700px;height:700px;background:radial-gradient(circle,rgba(255,59,89,.06) 0%,transparent 65%);pointer-events:none}
+.hero-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 340px;gap:3rem;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:#FFF0F3;border:1px solid rgba(255,59,89,.25);color:var(--red);padding:.3rem .9rem;border-radius:100px;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.25rem}
+.hero-logo{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+.hero-logo img{height:32px}
+.hero-logo-fallback{color:var(--gray-900);font-size:1.8rem;font-weight:800;letter-spacing:-.03em}
+.hero-logo-fallback span{color:var(--red)}
+h1.hero-title{font-size:clamp(2.2rem,4vw,3.6rem);font-weight:800;color:var(--gray-900);letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem}
+h1.hero-title em{color:var(--red);font-style:normal}
+.hero-meta{font-size:.82rem;color:var(--gray-500);margin-bottom:2.5rem;letter-spacing:.04em}
+.hero-kpis{display:flex;gap:2rem;flex-wrap:wrap}
+.hero-kpi-val{font-size:2rem;font-weight:800;color:var(--gray-900);letter-spacing:-.03em;line-height:1}
+.hero-kpi-val.down{color:#EF4444}
+.hero-kpi-val.up{color:var(--green)}
+.hero-kpi-lbl{font-size:.68rem;color:var(--gray-500);text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem}
+.hero-verdict{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:1.75rem}
+.hero-verdict-title{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.hero-verdict p{font-size:.88rem;line-height:1.65;color:var(--gray-700)}
+.verdict-score{display:flex;align-items:baseline;gap:.3rem;margin-top:1.25rem}
+.verdict-score-num{font-size:3.5rem;font-weight:800;color:var(--amber);letter-spacing:-.05em}
+.verdict-score-den{font-size:1.2rem;color:var(--gray-400)}
+.verdict-score-lbl{font-size:.75rem;color:var(--gray-500);margin-left:.5rem}
+
+/* ──── SECTION LABELS ──── */
+.sec-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:.5rem}
+.sec-title{font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:800;color:var(--gray-900);letter-spacing:-.025em;line-height:1.15;margin-bottom:.75rem}
+.sec-sub{font-size:.95rem;color:var(--gray-500);max-width:580px;line-height:1.6;margin-bottom:2rem}
+.redbar{width:48px;height:4px;background:var(--red);border-radius:2px;margin-bottom:1.75rem}
+
+/* ──── KPI CARDS ──── */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1rem;margin-bottom:2rem}
+.kcard{background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:1.2rem 1.3rem;position:relative;overflow:hidden}
+.kcard::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%}
+.kcard.crit::before{background:#EF4444}
+.kcard.warn::before{background:var(--amber)}
+.kcard.good::before{background:var(--green)}
+.kcard.info::before{background:var(--blue)}
+.kcard.neu::before{background:var(--gray-400)}
+.kcard-lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gray-500);margin-bottom:.35rem}
+.kcard-val{font-size:1.8rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--gray-900)}
+.kcard-chg{font-size:.76rem;font-weight:600;margin-top:.3rem}
+.kcard-chg.up{color:var(--green)}
+.kcard-chg.dn{color:#EF4444}
+.kcard-note{font-size:.72rem;color:var(--gray-400);margin-top:.2rem}
+
+/* ──── LAYOUT GRIDS ──── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;align-items:start}
+.g2-wide{display:grid;grid-template-columns:1.4fr 1fr;gap:1.5rem;align-items:start}
+.g2-tall{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+
+/* ──── CHART CARDS ──── */
+.cc{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:1.5rem}
+.cc-lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gray-500);margin-bottom:.25rem}
+.cc-title{font-size:1rem;font-weight:700;color:var(--gray-900);margin-bottom:1.25rem;line-height:1.3}
+.cc-big{font-size:2.4rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:.25rem}
+.cc-big.red{color:var(--red)}
+.cc-big.grn{color:var(--green)}
+.cc-big.amb{color:var(--amber)}
+
+/* ──── COMPARISON TABLE ──── */
+.ctable{width:100%;border-collapse:collapse;border-radius:10px;overflow:hidden;border:1px solid var(--gray-200)}
+.ctable th{background:var(--gray-900);color:rgba(255,255,255,.6);padding:.85rem 1rem;text-align:left;font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.ctable th.lodgify{color:#FF7B95}
+.ctable td{padding:.8rem 1rem;font-size:.88rem;border-bottom:1px solid var(--gray-200)}
+.ctable tr:last-child td{border-bottom:none}
+.ctable tr:nth-child(even) td{background:var(--gray-50)}
+.ctable .mtr{color:var(--gray-500);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.win{color:var(--green);font-weight:700}
+.lose{color:#EF4444;font-weight:700}
+.neu2{color:var(--gray-700);font-weight:600}
+
+/* ──── ISSUE CARDS ──── */
+.issue-list{display:flex;flex-direction:column;gap:.85rem}
+.issue{background:#fff;border:1px solid var(--gray-200);border-radius:9px;padding:1rem 1.2rem;display:flex;gap:1rem;align-items:flex-start}
+.issue-badge{flex-shrink:0;padding:.22rem .65rem;border-radius:5px;font-size:.65rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;margin-top:1px}
+.badge-crit{background:#FEF2F2;color:#DC2626}
+.badge-high{background:#FFFBEB;color:#D97706}
+.badge-med{background:#EFF6FF;color:#2563EB}
+.issue h4{font-size:.9rem;font-weight:700;color:var(--gray-900);margin-bottom:.2rem}
+.issue p{font-size:.8rem;color:var(--gray-500);line-height:1.5}
+.issue-fix{font-size:.76rem;color:var(--gray-700);background:var(--gray-100);border-radius:5px;padding:.35rem .6rem;margin-top:.45rem;display:flex;gap:.35rem}
+.issue-fix::before{content:'→';color:var(--red);font-weight:700}
+.issue-link{font-size:.72rem;margin-top:.4rem;display:flex;align-items:flex-start;gap:.35rem;flex-wrap:wrap}
+.issue-link-label{font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;flex-shrink:0}
+.issue-link a{color:var(--blue);text-decoration:none;word-break:break-all}
+.issue-link a:hover{text-decoration:underline}
+.issue-link-how{font-size:.7rem;color:var(--gray-400);margin-top:.2rem;font-style:italic;padding-left:.05rem}
+
+/* ──── CALLOUT ──── */
+.callout{background:#FFF0F3;border:1px solid rgba(255,59,89,.2);border-left:4px solid var(--red);border-radius:0 9px 9px 0;padding:1.1rem 1.3rem;margin:1.25rem 0}
+.callout-t{font-weight:700;font-size:.88rem;color:var(--gray-900);margin-bottom:.3rem}
+.callout p{font-size:.82rem;color:var(--gray-700);line-height:1.55}
+
+/* ──── GEO BLOCK ──── */
+.geo-dark{background:var(--gray-50);border:1px solid var(--gray-200);border-left:4px solid var(--red);border-radius:14px;padding:2.5rem;position:relative;overflow:hidden;margin-bottom:1.5rem}
+.geo-dark::before{display:none}
+.geo-dark h3{font-size:1.5rem;font-weight:800;color:var(--gray-900);margin-bottom:.6rem;line-height:1.2}
+.geo-dark p{font-size:.85rem;color:var(--gray-500);max-width:640px;line-height:1.6}
+.geo-stats{display:flex;gap:2rem;flex-wrap:wrap;margin-top:1.5rem}
+.geo-stat-v{font-size:2rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--red)}
+.geo-stat-l{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-500);margin-top:.15rem}
+
+/* ──── SERP BADGE TABLE ──── */
+.serp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;margin-top:1rem}
+.serp-item{background:#fff;border:1px solid var(--gray-200);border-radius:8px;padding:.9rem 1rem}
+.serp-item.present{border-color:rgba(16,185,129,.3);background:#F0FDF4}
+.serp-item.absent{border-color:rgba(239,68,68,.25);background:#FEF2F2}
+.serp-item.opportunity{border-color:rgba(245,158,11,.3);background:#FFFBEB}
+.serp-count{font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1}
+.serp-count.green{color:var(--green)}
+.serp-count.red{color:#EF4444}
+.serp-count.amber{color:var(--amber)}
+.serp-name{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gray-500);margin-top:.2rem}
+
+/* ──── ROADMAP ──── */
+.roadmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.rphase{border-radius:11px;overflow:hidden}
+.rphase-head{padding:1.1rem 1.3rem;color:#fff}
+.rphase-head.p1{background:#DC2626}
+.rphase-head.p2{background:#D97706}
+.rphase-head.p3{background:#059669}
+.rphase-period{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:.2rem}
+.rphase-name{font-size:1.05rem;font-weight:800}
+.rphase-body{background:#fff;border:1px solid var(--gray-200);border-top:none;border-radius:0 0 11px 11px;padding:1.1rem 1.3rem}
+.ritem{display:flex;gap:.65rem;align-items:flex-start;padding:.5rem 0;border-bottom:1px solid var(--gray-100);font-size:.82rem;line-height:1.45}
+.ritem:last-child{border-bottom:none}
+.rnum{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--gray-100);color:var(--gray-600);font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+
+/* ──── SCORE CARD ──── */
+.score-row{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;margin-bottom:1.5rem}
+.score-cell{background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:1.2rem;text-align:center}
+.score-area{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gray-500);margin-bottom:.6rem}
+.score-num{font-size:2.8rem;font-weight:800;letter-spacing:-.05em;line-height:1}
+.score-den{font-size:1rem;color:var(--gray-400)}
+.score-sub{font-size:.7rem;color:var(--gray-400);margin-top:.35rem}
+.s2{color:#EF4444}
+.s5,.s6{color:var(--amber)}
+.s7,.s8{color:var(--green)}
+.overall-cell{border:2px solid var(--red) !important}
+.overall-cell .score-area{color:var(--red)}
+
+/* ──── DATA TABLE ──── */
+.dtable{width:100%;border-collapse:collapse}
+.dtable th{background:var(--gray-100);padding:.65rem .9rem;text-align:left;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-500);border-bottom:2px solid var(--gray-200)}
+.dtable td{padding:.75rem .9rem;font-size:.84rem;border-bottom:1px solid var(--gray-200)}
+.dtable tr:last-child td{border-bottom:none}
+
+/* ──── TOP PAGES ──── */
+.tpage-row{display:flex;align-items:center;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--gray-100)}
+.tpage-row:last-child{border-bottom:none}
+.tpage-url{font-size:.78rem;color:var(--blue);font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tpage-traffic{font-size:.88rem;font-weight:800;color:var(--gray-900);white-space:nowrap}
+.tpage-bar-wrap{width:120px;height:6px;background:var(--gray-200);border-radius:3px;flex-shrink:0}
+.tpage-bar{height:6px;background:var(--red);border-radius:3px}
+
+/* ──── FOOTER ──── */
+footer{background:var(--gray-50);border-top:1px solid var(--gray-200);color:var(--gray-400);text-align:center;padding:2rem;font-size:.76rem}
+footer strong{color:var(--gray-600)}
+
+/* ──── SOURCE NOTE ──── */
+.src{font-size:.65rem;color:var(--gray-400);margin-top:.85rem;padding-top:.6rem;border-top:1px solid var(--gray-100);letter-spacing:.03em}
+.src strong{color:var(--gray-500)}
+
+/* ──── SERP COMPARISON ──── */
+.serp-cmp{width:100%;border-collapse:collapse;margin-top:1rem}
+.serp-cmp thead th{padding:.55rem .8rem;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border-bottom:2px solid var(--gray-200)}
+.serp-cmp thead th.h-now{color:var(--green);text-align:center}
+.serp-cmp thead th.h-gap{color:#EF4444;text-align:center}
+.serp-cmp thead th.h-feat{color:var(--gray-500);text-align:left}
+.serp-cmp thead th.h-pri{color:var(--gray-500);text-align:left}
+.serp-cmp tbody tr{border-bottom:1px solid var(--gray-100)}
+.serp-cmp tbody tr:last-child{border-bottom:none}
+.serp-cmp tbody td{padding:.65rem .8rem;font-size:.84rem;vertical-align:middle}
+.serp-cmp .feat-name{font-weight:700;color:var(--gray-900);font-size:.88rem}
+.serp-cmp .feat-sub{font-size:.7rem;color:var(--gray-400);margin-top:.1rem}
+.serp-cmp .num-now{text-align:center;font-size:1.25rem;font-weight:800;letter-spacing:-.03em;color:var(--green)}
+.serp-cmp .num-gap{text-align:center;font-size:1.25rem;font-weight:800;letter-spacing:-.03em;color:#EF4444}
+.serp-cmp .num-zero{color:#EF4444}
+.serp-cmp .num-strong{color:var(--green);font-size:.78rem;font-weight:700;text-align:center}
+
+/* ──── RESPONSIVE ──── */
+@media(max-width:860px){
+.hero-inner,.g2,.g2-wide,.g2-tall,.g3,.roadmap-grid,.score-row{grid-template-columns:1fr}
+.nav-links{display:none}
+.kpi-row{grid-template-columns:1fr 1fr}
+.hero-kpis{gap:1.2rem}
+}
+@media print{
+nav{position:relative}
+.page{page-break-inside:avoid;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════ NAV ══════════════════════════════════ -->
+<nav>
+  <div class="nav-brand" style="display:flex;align-items:center;gap:.6rem">
+  <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" height="22" style="flex-shrink:0">
+    <path d="M0 0 L27 0 L27 27 L44 27 L44 44 L0 44 Z" fill="#FF3B59"/>
+    <rect x="28" y="1" width="15" height="15" fill="#1ECFB3"/>
+  </svg>
+  <span>SEO &amp; GEO Audit · April 2026</span>
+</div>
+  <ul class="nav-links">
+    <li><a href="#p1"><span class="nav-num">P1</span> Audit Brief</a></li>
+    <li><a href="#p2"><span class="nav-num">P2</span> Key Findings</a></li>
+    <li><a href="#p3"><span class="nav-num">P3</span> Site Health</a></li>
+    <li><a href="#p4"><span class="nav-num">P4</span> AI Visibility</a></li>
+    <li><a href="#p5"><span class="nav-num">P5</span> Content Gaps</a></li>
+    <li><a href="#p6"><span class="nav-num">P6</span> Action Plan</a></li>
+    <li><a href="#p7"><span class="nav-num">P7</span> About Me</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════ PAGE 1 — COVER ══════════════════════════════ -->
+<div id="p1" style="background:#ffffff;min-height:100vh;position:relative;display:flex;flex-direction:column;border-bottom:none;overflow:hidden">
+
+  <!-- Top red rule -->
+  <div style="height:6px;background:linear-gradient(90deg,#FF3B59 0%,#FF3B59 75%,#1ECFB3 100%);flex-shrink:0"></div>
+
+  <!-- Subtle background geometry -->
+  <div style="position:absolute;right:-120px;top:60px;width:500px;height:500px;border:80px solid #FF3B59;border-radius:50%;opacity:.04;pointer-events:none"></div>
+  <div style="position:absolute;right:60px;bottom:100px;width:220px;height:220px;background:#1ECFB3;border-radius:50%;opacity:.06;pointer-events:none"></div>
+  <div style="position:absolute;left:-80px;bottom:-80px;width:320px;height:320px;border:60px solid #FF3B59;border-radius:50%;opacity:.04;pointer-events:none"></div>
+
+  <!-- Header row -->
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:2rem 6%;position:relative;z-index:1;flex-shrink:0">
+    <svg viewBox="0 0 215 50" xmlns="http://www.w3.org/2000/svg" height="34" style="display:block">
+      <path d="M0 0 L29 0 L29 29 L47 29 L47 47 L0 47 Z" fill="#FF3B59"/>
+      <rect x="30" y="1" width="16" height="16" fill="#1ECFB3"/>
+      <text x="60" y="35" font-family="'Source Sans 3',Arial,sans-serif" font-size="28" font-weight="800" fill="#111827" letter-spacing="2">LODGIFY</text>
+    </svg>
+    <div style="text-align:right">
+      <div style="font-size:.65rem;color:#9CA3AF;letter-spacing:.12em;text-transform:uppercase">SEO &amp; GEO Audit Report</div>
+      <div style="font-size:.65rem;color:#9CA3AF;letter-spacing:.06em;margin-top:.2rem">April 16, 2026 · Confidential</div>
+    </div>
+  </div>
+
+  <!-- Hero title — centred, lots of white space -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:2rem 6% 1rem;position:relative;z-index:1">
+
+    <div style="max-width:700px">
+      <!-- Label -->
+      <div style="display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.8rem">
+        <div style="width:28px;height:3px;background:#FF3B59;border-radius:2px"></div>
+        <span style="font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#FF3B59">Full Audit — lodgify.com</span>
+      </div>
+
+      <!-- Main title -->
+      <h1 style="font-size:clamp(3rem,5.5vw,5rem);font-weight:800;color:#111827;letter-spacing:-.04em;line-height:1.04;margin-bottom:1.5rem">Strong Domain.<br><span style="color:#FF3B59">Untapped</span><br>Potential.</h1>
+
+      <!-- Accent divider -->
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.8rem">
+        <div style="width:56px;height:3px;background:#FF3B59;border-radius:2px"></div>
+        <div style="width:20px;height:3px;background:#1ECFB3;border-radius:2px"></div>
+        <div style="width:8px;height:3px;background:#E5E7EB;border-radius:2px"></div>
+      </div>
+
+      <!-- Subtitle -->
+      <p style="font-size:1rem;color:#6B7280;line-height:1.7;margin-bottom:2.5rem;max-width:520px">SEO &amp; GEO Analysis<br>Prepared for Lodgify's GEO/SEO Intern Application<br>by Applicant <strong style="color:#374151">Mahmoud Mohamed Samir</strong></p>
+
+      <!-- Inline stat strip -->
+      <div style="display:flex;gap:2.5rem;flex-wrap:wrap">
+        <div>
+          <div style="font-size:1.9rem;font-weight:800;color:#111827;letter-spacing:-.04em;line-height:1">263K</div>
+          <div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:#9CA3AF;margin-top:.2rem">Organic Visitors · Apr 2026</div>
+        </div>
+        <div style="width:1px;background:#E5E7EB;align-self:stretch"></div>
+        <div>
+          <div style="font-size:1.9rem;font-weight:800;color:#111827;letter-spacing:-.04em;line-height:1">1.6M</div>
+          <div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:#9CA3AF;margin-top:.2rem">Backlinks</div>
+        </div>
+        <div style="width:1px;background:#E5E7EB;align-self:stretch"></div>
+        <div>
+          <div style="font-size:1.9rem;font-weight:800;color:#0F766E;letter-spacing:-.04em;line-height:1">51<span style="font-size:1rem;color:#D1D5DB">/100</span></div>
+          <div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:#9CA3AF;margin-top:.2rem">AI Visibility Score</div>
+        </div>
+        <div style="width:1px;background:#E5E7EB;align-self:stretch"></div>
+        <div>
+          <div style="font-size:1.9rem;font-weight:800;color:#EF4444;letter-spacing:-.04em;line-height:1">4</div>
+          <div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:#EF4444;margin-top:.2rem">Main Issues Found</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOC row — horizontal at bottom of hero -->
+    <div style="margin-top:3.5rem;padding-top:2rem;border-top:1px solid #F3F4F6;display:flex;gap:.6rem;flex-wrap:wrap">
+      <a href="#p2" style="text-decoration:none;display:flex;align-items:center;gap:.5rem;padding:.45rem .85rem;border:1px solid #E5E7EB;border-radius:100px;background:#fff">
+        <span style="background:#FF3B59;color:#fff;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;flex-shrink:0">1</span>
+        <span style="font-size:.73rem;color:#374151;font-weight:600;white-space:nowrap">Key Findings</span>
+      </a>
+      <a href="#p2" style="text-decoration:none;display:flex;align-items:center;gap:.5rem;padding:.45rem .85rem;border:1px solid #E5E7EB;border-radius:100px;background:#fff">
+        <span style="background:#FF3B59;color:#fff;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;flex-shrink:0">2</span>
+        <span style="font-size:.73rem;color:#374151;font-weight:600;white-space:nowrap">Competitive</span>
+      </a>
+      <a href="#p3" style="text-decoration:none;display:flex;align-items:center;gap:.5rem;padding:.45rem .85rem;border:1px solid #E5E7EB;border-radius:100px;background:#fff">
+        <span style="background:#FF3B59;color:#fff;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;flex-shrink:0">3</span>
+        <span style="font-size:.73rem;color:#374151;font-weight:600;white-space:nowrap">Site Health</span>
+      </a>
+      <a href="#p4" style="text-decoration:none;display:flex;align-items:center;gap:.5rem;padding:.45rem .85rem;border:1px solid #E5E7EB;border-radius:100px;background:#fff">
+        <span style="background:#FF3B59;color:#fff;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;flex-shrink:0">4</span>
+        <span style="font-size:.73rem;color:#374151;font-weight:600;white-space:nowrap">AI Visibility</span>
+      </a>
+      <a href="#p5" style="text-decoration:none;display:flex;align-items:center;gap:.5rem;padding:.45rem .85rem;border:1px solid #E5E7EB;border-radius:100px;background:#fff">
+        <span style="background:#FF3B59;color:#fff;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;flex-shrink:0">5</span>
+        <span style="font-size:.73rem;color:#374151;font-weight:600;white-space:nowrap">Content Gaps</span>
+      </a>
+      <a href="#p6" style="text-decoration:none;display:flex;align-items:center;gap:.5rem;padding:.45rem .85rem;border:1px solid #E5E7EB;border-radius:100px;background:#fff">
+        <span style="background:#FF3B59;color:#fff;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;flex-shrink:0">6</span>
+        <span style="font-size:.73rem;color:#374151;font-weight:600;white-space:nowrap">Action Plan</span>
+      </a>
+      <a href="#p7" style="text-decoration:none;display:flex;align-items:center;gap:.5rem;padding:.45rem .85rem;border:1.5px solid #FECDD3;border-radius:100px;background:#FFF5F6">
+        <span style="background:#FF3B59;color:#fff;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;flex-shrink:0">7</span>
+        <span style="font-size:.73rem;color:#FF3B59;font-weight:600;white-space:nowrap">About the Analyst</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:1.1rem 6%;border-top:1px solid #F3F4F6;position:relative;z-index:1;flex-shrink:0">
+    <div style="font-size:.64rem;color:#9CA3AF">Prepared by <strong style="color:#374151;font-weight:700">Mahmoud Samir</strong> · GEO/SEO Intern Application</div>
+    <div style="font-size:.64rem;color:#9CA3AF">Data via <strong style="color:#374151;font-weight:700">Semrush</strong> · April 2026</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PAGE 1 CONT — KPIs ══════════════════════════ -->
+<div class="page" style="padding-top:3rem;padding-bottom:3rem">
+  <div class="container">
+    <div class="kpi-row">
+      <div class="kcard good">
+        <div class="kcard-lbl">Global Organic Traffic</div>
+        <div class="kcard-val">263.9K</div>
+        <div class="kcard-chg up">↑ +10% month-over-month</div>
+        <div class="kcard-note">US: 49.5K (+0.3%) · Worldwide recovery</div>
+      </div>
+      <div class="kcard good">
+        <div class="kcard-lbl">Organic Keywords</div>
+        <div class="kcard-val">91K</div>
+        <div class="kcard-chg dn">↓ -5.2% (US MoM) · 32.4K keywords</div>
+        <div class="kcard-note">Keywords declining despite traffic recovery</div>
+      </div>
+      <div class="kcard good">
+        <div class="kcard-lbl">Authority Score <span style="font-size:.65rem;font-weight:400">(Semrush 0–100)</span></div>
+        <div class="kcard-val">45<span style="font-size:1rem;color:var(--gray-400)">/100</span></div>
+        <div class="kcard-chg dn">-1 vs last month</div>
+        <div class="kcard-note">vs Hostaway: 39/100 · Lodgify leads by +6 pts</div>
+      </div>
+      <div class="kcard good">
+        <div class="kcard-lbl">Ref. Domains</div>
+        <div class="kcard-val">27.7K</div>
+        <div class="kcard-chg up">↑ +0.76% MoM</div>
+        <div class="kcard-note">Hostaway has only 3.5K · 8× advantage</div>
+      </div>
+      <div class="kcard crit">
+        <div class="kcard-lbl">Site Health</div>
+        <div class="kcard-val">86%</div>
+        <div class="kcard-chg dn">Audit sample: 100 pages · Apr 2026</div>
+        <div class="kcard-note">AI Search Health: 79/100 (Semrush 0–100 score)</div>
+      </div>
+      <div class="kcard crit">
+        <div class="kcard-lbl">Core Web Vitals (Mobile)</div>
+        <div class="kcard-val" style="font-size:1.4rem;color:#EF4444">FAILED</div>
+        <div class="kcard-chg dn">LCP 3.3s · INP 361ms · CLS 0.17</div>
+        <div class="kcard-note">Source: PageSpeed Insights · Apr 2026</div>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="callout-t">⚠️ The Key Paradox — Strong Domain, Leaking Organic</div>
+      <p>Lodgify's backlink profile (1.6M links, 27.7K domains) and authority score (45/100) dwarf Hostaway. Yet Hostaway's AI Visibility score (55/100) beats Lodgify's (51/100) — meaning a weaker domain is winning AI search presence. Lodgify has 14,800 AI Overview keywords in its space with zero links back. This is the single biggest strategic gap in 2026.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PAGE 2 — COMPETITIVE ANALYSIS ══════════════════════════ -->
+<div class="page" id="p2">
+  <div class="container">
+    <div class="sec-label">Page 2 of 6 — Competitive Landscape</div>
+    <h2 class="sec-title">Lodgify vs. The Field</h2>
+    <div class="redbar"></div>
+    <div class="g2-wide" style="margin-bottom:1.75rem">
+      <div>
+        <table class="ctable">
+          <thead>
+            <tr>
+              <th>Metric · April 2026</th>
+              <th class="lodgify">Lodgify</th>
+              <th>Hostaway</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mtr">Authority Score <span style="font-size:.65rem;color:var(--gray-400)">(0–100)</span></td><td class="win">45/100 ✓</td><td class="lose">39/100</td></tr>
+            <tr><td class="mtr">Global Organic Traffic</td><td class="win">263.9K ✓</td><td class="lose">57.2K</td></tr>
+            <tr><td class="mtr">Organic Traffic MoM</td><td class="win">+10% ✓</td><td class="lose">-4.7%</td></tr>
+            <tr><td class="mtr">Organic Keywords</td><td class="win">91K ✓</td><td class="lose">38.2K</td></tr>
+            <tr><td class="mtr">Referring Domains</td><td class="win">27.7K ✓</td><td class="lose">3.5K</td></tr>
+            <tr><td class="mtr">Total Backlinks</td><td class="win">1.6M ✓</td><td class="lose">56.4K</td></tr>
+            <tr><td class="mtr">Paid Traffic</td><td class="win">5.2K ✓</td><td class="lose">2.8K</td></tr>
+            <tr><td class="mtr">AI Visibility Score <span style="font-size:.65rem;color:var(--gray-400)">(0–100)</span></td><td class="lose">51/100</td><td class="win">55/100 ✓</td></tr>
+            <tr><td class="mtr">AI Mentions (Global)</td><td class="win">3.5K ✓</td><td class="lose">3.1K</td></tr>
+            <tr><td class="mtr">AI Cited Pages</td><td class="win">3.8K ✓</td><td class="lose">3.7K</td></tr>
+            <tr><td class="mtr">ChatGPT Mentions</td><td class="lose">551</td><td class="win">404 (but higher score)</td></tr>
+            <tr><td class="mtr">Common Keywords Gap</td><td colspan="2" class="neu2">6.8K missing vs Hostaway</td></tr>
+          </tbody>
+        </table>
+        <div class="src"><strong>Source: Semrush</strong> · Domain Overview &amp; AI Visibility · April 2026</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1.25rem">
+        <div class="cc">
+          <div class="cc-lbl">Organic Traffic Comparison</div>
+          <div class="cc-title">Lodgify leads 4.6× in global organic traffic</div>
+          <canvas id="orgTrafficChart" height="140"></canvas>
+          <div class="src"><strong>Source: Semrush</strong> · Domain Overview · April 2026</div>
+        </div>
+        <div class="cc">
+          <div class="cc-lbl">AI Visibility — The Reversal</div>
+          <div class="cc-title">Hostaway wins AI presence despite weaker SEO</div>
+          <canvas id="aiVisChart" height="110"></canvas>
+          <div class="src"><strong>Source: Semrush</strong> · AI Visibility report · April 2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="g3">
+      <div class="cc">
+        <div class="cc-lbl">Keyword Gap Summary</div>
+        <div class="cc-title">vs. Hostaway</div>
+        <canvas id="kgapChart" height="160"></canvas>
+        <div class="src"><strong>Source: Semrush</strong> · Keyword Gap tool · April 2026</div>
+      </div>
+      <div class="cc">
+        <div class="cc-lbl">Top Organic Competitors</div>
+        <div class="cc-title">Shared keyword competition level</div>
+        <table class="dtable" style="margin-top:.25rem">
+          <thead><tr><th>Domain</th><th>Common KWs</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td>hostaway.com</td><td><strong>2,466</strong></td><td style="color:var(--red);font-weight:700">29%</td></tr>
+            <tr><td>hospitable.com</td><td><strong>2,306</strong></td><td style="color:var(--red);font-weight:700">29%</td></tr>
+            <tr><td>withairbnb.com</td><td><strong>2,019</strong></td><td style="color:var(--amber);font-weight:700">17%</td></tr>
+            <tr><td>guesty.com</td><td><strong>1,506</strong></td><td style="color:var(--amber);font-weight:700">23%</td></tr>
+            <tr><td>pricelabs.co</td><td><strong>1,293</strong></td><td style="color:var(--gray-500);font-weight:700">19%</td></tr>
+          </tbody>
+        </table>
+        <div class="src"><strong>Source: Semrush</strong> · Competitive Research · April 2026</div>
+      </div>
+      <div class="cc">
+        <div class="cc-lbl">Backlink Authority</div>
+        <div class="cc-title">Lodgify's link profile vs. competitors</div>
+        <canvas id="backlinkChart" height="160"></canvas>
+        <div class="src"><strong>Source: Semrush</strong> · Backlink Analytics · April 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PAGE 3 — TECHNICAL SEO ══════════════════════════ -->
+<div class="page" id="p3">
+  <div class="container">
+    <div class="sec-label">Page 3 of 6 — Technical SEO &amp; Site Audit</div>
+    <h2 class="sec-title">Site Health: 86% — Confirmed Issues + CWV Failing on Mobile</h2>
+    <div class="redbar"></div>
+    <!-- Top 3 charts row -->
+    <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:1.25rem;margin-bottom:1.75rem">
+      <div>
+        <div class="cc">
+          <div class="cc-lbl">Semrush Site Audit Breakdown</div>
+          <canvas id="auditChart" height="200"></canvas>
+          <div class="src"><strong>Source: Semrush</strong> · Site Audit · April 2026</div>
+        </div>
+      </div>
+      <div>
+        <div class="cc">
+          <div class="cc-lbl">Confirmed Issues — Priority Level</div>
+          <div class="cc-title">4 confirmed issues ranked by severity</div>
+          <canvas id="issuesSeverityChart" height="175"></canvas>
+          <div style="display:flex;gap:1rem;margin-top:.5rem;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:.62rem;color:var(--gray-500)"><span style="width:10px;height:10px;border-radius:2px;background:#EF4444;display:inline-block"></span>Critical</div>
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:.62rem;color:var(--gray-500)"><span style="width:10px;height:10px;border-radius:2px;background:#F59E0B;display:inline-block"></span>High</div>
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:.62rem;color:var(--gray-500)"><span style="width:10px;height:10px;border-radius:2px;background:#3B82F6;display:inline-block"></span>Medium</div>
+          </div>
+          <div class="src"><strong>Source: Manual audit</strong> · April 2026</div>
+        </div>
+      </div>
+      <div>
+        <div class="cc">
+          <div class="cc-lbl">PageSpeed Score</div>
+          <div class="cc-title">Mobile vs Desktop · lodgify.com</div>
+          <canvas id="pagespeedChart" height="175"></canvas>
+          <div class="src"><strong>Source: PageSpeed Insights</strong> · April 16, 2026</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-bottom:1.75rem">
+      <div class="issue-list">
+        <div class="issue">
+          <div class="issue-badge badge-crit">Critical</div>
+          <div>
+            <h4>Core Web Vitals: FAILED on Mobile — All 5 Metrics Below Google's Threshold</h4>
+            <p>PageSpeed Insights confirms all Core Web Vitals are failing on mobile. LCP at 3.3s means users wait over 3 seconds to see the main content — Google's threshold for "Good" is under 2.5s. TTFB at 2.8s (server response) is the root cause dragging every other metric down. With Mexico at 96% mobile traffic, this directly suppresses rankings in Lodgify's #3 market.</p>
+
+            <!-- CWV Chart -->
+            <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:8px;padding:1rem;margin-top:.75rem">
+              <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-500);margin-bottom:.6rem">Mobile CWV — Actual vs. Google's "Good" Threshold · Apr 2026</div>
+              <canvas id="cwvChart" height="90"></canvas>
+              <div style="display:flex;gap:1.25rem;margin-top:.65rem;flex-wrap:wrap">
+                <div style="display:flex;align-items:center;gap:.35rem;font-size:.65rem;color:var(--gray-500)"><span style="width:10px;height:10px;border-radius:2px;background:#EF4444;display:inline-block"></span>Actual (Failing)</div>
+                <div style="display:flex;align-items:center;gap:.35rem;font-size:.65rem;color:var(--gray-500)"><span style="width:10px;height:10px;border-radius:2px;background:#10B981;display:inline-block"></span>Google "Good" Threshold</div>
+              </div>
+              <div class="src"><strong>Source: PageSpeed Insights</strong> · Mobile · https://www.lodgify.com/ · April 16, 2026</div>
+            </div>
+
+            <div class="issue-fix">Fix TTFB first (server response time — target under 0.8s). Then optimize images for LCP. These two fixes will cascade improvements across all metrics.</div>
+            <div class="issue-link">
+              <span class="issue-link-label">🔗 Live proof:</span>
+              <div>
+                <a href="https://pagespeed.web.dev/analysis/https-www-lodgify-com/ac017idwmp?form_factor=mobile" target="_blank">https://pagespeed.web.dev/report?url=https://www.lodgify.com/</a>
+                <div class="issue-link-how">Open → Mobile tab → Core Web Vitals Assessment shows "Failed" with LCP 3.3s, INP 361ms, CLS 0.17, FCP 3.3s, TTFB 2.8s — all orange/red.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="issue">
+          <div class="issue-badge badge-crit">Critical</div>
+          <div>
+            <h4>Zero FAQ Rich Results — Dedicated FAQ Page Has 28 Questions With No Schema</h4>
+            <p>Lodgify has a dedicated FAQ page at <strong>/faqs/</strong> with 28 Q&amp;A pairs across 4 sections (About Lodgify, Pricing, Features, Security) — but it has <strong>zero FAQPage JSON-LD schema</strong>. Confirmed live: right-click → View Page Source → search "FAQPage" → no results. Google sees plain HTML text, not structured data, so Lodgify captures zero FAQ rich results in SERPs. 11 FAQ features in the keyword space link to competitors instead.</p>
+            <div class="issue-fix">Add FAQPage JSON-LD schema to lodgify.com/faqs/ and to all blog posts with Q&amp;A sections. This is a single afternoon of dev work with direct, measurable SERP impact.</div>
+            <div class="issue-link">
+              <span class="issue-link-label">🔗 Live proof — FAQ page (no schema):</span>
+              <div>
+                <a href="https://www.lodgify.com/faqs/" target="_blank">lodgify.com/faqs/</a>
+                <div class="issue-link-how">Open → View Page Source → Ctrl+F "FAQPage" → 0 results. 28 questions exist in HTML but are invisible to Google's structured data parser.</div>
+              </div>
+            </div>
+            <div class="issue-link" style="margin-top:.5rem">
+              <span class="issue-link-label">🔗 Same issue on blog posts:</span>
+              <div>
+                <a href="https://www.lodgify.com/blog/airbnb-guest-reviews/" target="_blank">lodgify.com/blog/airbnb-guest-reviews/</a>
+                <div class="issue-link-how">Scroll to "Airbnb guest review FAQs" → 11 Q&amp;A pairs in HTML, no JSON-LD. Repeated across hundreds of posts.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="issue">
+          <div class="issue-badge badge-high">High</div>
+          <div>
+            <h4>Broken Logo Navigation — Courses &amp; Blog Pages Don't Return to Homepage</h4>
+            <p>When navigating from the Resources section into vacation rental courses or blog pages, clicking the Lodgify logo (top-left) <strong>does not return the user to the homepage</strong>. This is a side effect of the mid-migration split between the old WordPress site (www.lodgify.com) and the new Webflow site (get.lodgify.com) — logo links are misconfigured between domains. Users are stranded, bounce rates increase, and internal link equity signals break.</p>
+            <div class="issue-fix">Audit logo href values across all page templates on both domains. Every logo must point to www.lodgify.com or get.lodgify.com homepage consistently. Priority fix for migration cleanup.</div>
+            <div class="issue-link">
+              <span class="issue-link-label">🔗 Reproduce — Resources entry:</span>
+              <div>
+                <a href="https://www.lodgify.com/resources/" target="_blank">lodgify.com/resources/</a>
+                <div class="issue-link-how">Open Resources → click into any vacation rental course or blog post → once on the page, click the Lodgify logo top-left → does not navigate to homepage. Confirmed April 16, 2026.</div>
+              </div>
+            </div>
+            <div class="issue-link" style="margin-top:.5rem">
+              <span class="issue-link-label">🔗 Reproduce — Academy subdomain:</span>
+              <div>
+                <a href="https://academy.lodgify.com/" target="_blank">academy.lodgify.com/</a>
+                <div class="issue-link-how">Open the Academy homepage → click the Lodgify logo top-left → does not navigate to www.lodgify.com homepage. Logo href is misconfigured on this subdomain. Confirmed April 16, 2026.</div>
+              </div>
+            </div>
+            <div class="issue-link" style="margin-top:.5rem">
+              <span class="issue-link-label">🔗 Reproduce — Blog index:</span>
+              <div>
+                <a href="https://www.lodgify.com/blog/" target="_blank">www.lodgify.com/blog/</a>
+                <div class="issue-link-how">Open the Blog → click the Lodgify logo top-left → does not navigate to homepage. The JS-rendered header on WordPress blog pages serves a different logo href than the main site. Confirmed April 16, 2026.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="issue">
+          <div class="issue-badge badge-high">High</div>
+          <div>
+            <h4>Int. SEO Score: 94% — Missing H1s on Key Pages + Duplicate Tag Pages</h4>
+            <p>Confirmed live on two separate pages: <strong>/blog/ index has no H1</strong> and <strong>get.lodgify.com/pricing has no H1</strong> — the highest-converting page on the site. No H1 means Google has no primary keyword signal for what the page is about. Additionally, title≠H1 mismatches on blog posts and an indexed /uncategorized/ tag page dilute crawl budget. These are the likely contributors to the 6% gap from a perfect Int. SEO score.</p>
+            <div class="issue-fix">Add H1 to /blog/ index and get.lodgify.com/pricing immediately — single template-level fixes. Set /blog/category/uncategorized/ to "noindex" to stop wasting crawl budget on empty tag pages. Audit all Webflow migration pages for missing H1s as a batch.</div>
+            <div class="issue-link">
+              <span class="issue-link-label">🔗 Missing H1 — Blog index:</span>
+              <div>
+                <a href="https://www.lodgify.com/blog/" target="_blank">lodgify.com/blog/</a>
+                <div class="issue-link-how">Open → Right-click → View Page Source → Ctrl+F <code>&lt;h1</code> — zero results. Confirmed April 16, 2026.</div>
+              </div>
+            </div>
+            <div class="issue-link" style="margin-top:.5rem">
+              <span class="issue-link-label">🔗 Missing H1 — Pricing page (Webflow):</span>
+              <div>
+                <a href="https://get.lodgify.com/pricing" target="_blank">get.lodgify.com/pricing</a>
+                <div class="issue-link-how">Open → View Page Source → Ctrl+F <code>&lt;h1</code> — zero results. This is the primary conversion page and has no H1. Confirmed April 16, 2026.</div>
+              </div>
+            </div>
+            <div class="issue-link" style="margin-top:.5rem">
+              <span class="issue-link-label">🔗 Uncategorized tag page indexed:</span>
+              <div>
+                <a href="https://www.lodgify.com/blog/category/uncategorized/" target="_blank">lodgify.com/blog/category/uncategorized/</a>
+                <div class="issue-link-how">Live crawlable page with no real content — dilutes crawl budget. Should be set to "noindex" to exclude from Google's index.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PAGE 4 — GEO ══════════════════════════ -->
+<div class="page" id="p4">
+  <div class="container">
+    <div class="sec-label">Page 4 of 6 — Generative Engine Optimization (GEO) &amp; AI Visibility</div>
+    <h2 class="sec-title">AI Search: The First-Mover Window Is Now</h2>
+    <div class="redbar"></div>
+
+    <!-- SERP Features — moved here from Site Health (belongs with AI/GEO) -->
+    <div class="cc" style="padding:1.4rem 1.5rem;margin-bottom:1.75rem">
+      <div class="cc-lbl">SERP FEATURES — CURRENT STATE VS. UNTAPPED POTENTIAL · APRIL 2026</div>
+      <div class="cc-title" style="margin-bottom:.25rem">For every feature Lodgify holds, there is a larger pool it doesn't appear in — despite ranking for those keywords</div>
+      <p style="font-size:.72rem;color:var(--gray-500);margin:0 0 1.1rem">"Lodgify Linked" = keywords where Lodgify already appears in this SERP feature. "Gap" = keywords where this feature exists but Lodgify is missing, despite ranking on that page.</p>
+
+      <!-- Legend -->
+      <div style="display:flex;gap:1.25rem;margin-bottom:.85rem;align-items:center">
+        <div style="display:flex;align-items:center;gap:.4rem;font-size:.65rem;color:var(--gray-500);font-weight:600">
+          <span style="width:12px;height:12px;border-radius:3px;background:#10B981;display:inline-block"></span>Lodgify Currently Linked
+        </div>
+        <div style="display:flex;align-items:center;gap:.4rem;font-size:.65rem;color:var(--gray-500);font-weight:600">
+          <span style="width:12px;height:12px;border-radius:3px;background:#FEE2E2;border:1px solid #EF4444;display:inline-block"></span>Untapped Gap (not yet appearing)
+        </div>
+      </div>
+
+      <!-- Row: AI Overview -->
+      <div style="border:1px solid var(--gray-200);border-radius:10px;padding:.85rem 1rem;margin-bottom:.6rem;background:#fff">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.8fr auto;align-items:center;gap:1rem">
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--gray-800)">AI Overview</div>
+            <div style="font-size:.67rem;color:var(--gray-500);margin-top:.1rem">Google's AI-generated answer box at the very top of results — shown before any links</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:#10B981;line-height:1">499</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">Lodgify linked</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:#EF4444;line-height:1">14,800</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">keywords missing</div>
+          </div>
+          <div>
+            <div style="background:#F3F4F6;border-radius:6px;height:8px;overflow:hidden;margin-bottom:.3rem">
+              <div style="height:100%;width:3.3%;background:#10B981;border-radius:6px"></div>
+            </div>
+            <div style="font-size:.6rem;color:var(--gray-400)">Lodgify appears in only <strong>3.3%</strong> of available AI Overviews</div>
+          </div>
+          <div><span class="badge-crit issue-badge">Critical</span></div>
+        </div>
+        <div style="margin-top:.55rem;padding:.45rem .65rem;background:#FFF7ED;border-left:3px solid #F59E0B;border-radius:0 6px 6px 0;font-size:.67rem;color:#92400E">
+          <strong>Fix:</strong> Lead every blog post with a direct 2–3 sentence answer. Add structured data. More citations from authoritative sites → Google pulls Lodgify into AI answers.
+        </div>
+      </div>
+
+      <!-- Row: FAQ / Rich Results -->
+      <div style="border:1.5px solid #EF4444;border-radius:10px;padding:.85rem 1rem;margin-bottom:.6rem;background:#FFF5F5">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.8fr auto;align-items:center;gap:1rem">
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--gray-800)">FAQ / Rich Results</div>
+            <div style="font-size:.67rem;color:var(--gray-500);margin-top:.1rem">Expandable Q&amp;A boxes shown under a search result — requires FAQPage JSON-LD schema</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.5rem;font-weight:900;color:#EF4444;line-height:1">0</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">Lodgify linked</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:.95rem;font-weight:800;color:#EF4444;line-height:1.1">11 competitors<br>have it</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">Hostfully, Guesty, etc.</div>
+          </div>
+          <div>
+            <div style="background:#FEE2E2;border-radius:6px;height:8px;overflow:hidden;margin-bottom:.3rem">
+              <div style="height:100%;width:0%;background:#10B981;border-radius:6px"></div>
+            </div>
+            <div style="font-size:.6rem;color:#EF4444;font-weight:700">Lodgify appears in 0% — easiest single fix in this audit</div>
+          </div>
+          <div><span class="badge-crit issue-badge">Critical</span></div>
+        </div>
+        <div style="margin-top:.55rem;padding:.45rem .65rem;background:#FEF2F2;border-left:3px solid #EF4444;border-radius:0 6px 6px 0;font-size:.67rem;color:#991B1B">
+          <strong>Fix:</strong> Add FAQPage JSON-LD schema to lodgify.com/faqs/ (28 questions, zero schema today). One developer, one afternoon. Google picks it up within days.
+        </div>
+      </div>
+
+      <!-- Row: People Also Ask -->
+      <div style="border:1px solid var(--gray-200);border-radius:10px;padding:.85rem 1rem;margin-bottom:.6rem;background:#fff">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.8fr auto;align-items:center;gap:1rem">
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--gray-800)">People Also Ask</div>
+            <div style="font-size:.67rem;color:var(--gray-500);margin-top:.1rem">Accordion Q&amp;A boxes that expand mid-page in Google results</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:#10B981;line-height:1">1,600</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">Lodgify linked</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:#EF4444;line-height:1">8,600</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">keywords missing</div>
+          </div>
+          <div>
+            <div style="background:#F3F4F6;border-radius:6px;height:8px;overflow:hidden;margin-bottom:.3rem">
+              <div style="height:100%;width:15.7%;background:#10B981;border-radius:6px"></div>
+            </div>
+            <div style="font-size:.6rem;color:var(--gray-400)">Lodgify appears in <strong>15.7%</strong> of available PAA boxes</div>
+          </div>
+          <div><span class="badge-high issue-badge">High</span></div>
+        </div>
+        <div style="margin-top:.55rem;padding:.45rem .65rem;background:#FFF7ED;border-left:3px solid #F59E0B;border-radius:0 6px 6px 0;font-size:.67rem;color:#92400E">
+          <strong>Fix:</strong> Add a 4–6 Q&amp;A section at the bottom of every blog post, written in exact question format. FAQ schema fix also boosts this automatically.
+        </div>
+      </div>
+
+      <!-- Row: Featured Snippet -->
+      <div style="border:1px solid var(--gray-200);border-radius:10px;padding:.85rem 1rem;margin-bottom:.6rem;background:#fff">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.8fr auto;align-items:center;gap:1rem">
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--gray-800)">Featured Snippet</div>
+            <div style="font-size:.67rem;color:var(--gray-500);margin-top:.1rem">"Position zero" — a paragraph Google extracts and shows above all organic results</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:#10B981;line-height:1">6</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">Lodgify linked</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:#EF4444;line-height:1">108</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">keywords missing</div>
+          </div>
+          <div>
+            <div style="background:#F3F4F6;border-radius:6px;height:8px;overflow:hidden;margin-bottom:.3rem">
+              <div style="height:100%;width:5.3%;background:#10B981;border-radius:6px"></div>
+            </div>
+            <div style="font-size:.6rem;color:var(--gray-400)">Lodgify ranks for these keywords but wins only <strong>5.3%</strong> of snippets</div>
+          </div>
+          <div><span class="badge-high issue-badge">High</span></div>
+        </div>
+        <div style="margin-top:.55rem;padding:.45rem .65rem;background:#FFF7ED;border-left:3px solid #F59E0B;border-radius:0 6px 6px 0;font-size:.67rem;color:#92400E">
+          <strong>Fix:</strong> Rewrite intros on top 20 organic posts to lead with a direct 2–3 sentence answer. Add a clean numbered list early in the post — that's the exact format Google pulls for snippets.
+        </div>
+      </div>
+
+      <!-- Row: Sitelinks -->
+      <div style="border:1px solid var(--gray-200);border-radius:10px;padding:.85rem 1rem;margin-bottom:.6rem;background:#fff">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.8fr auto;align-items:center;gap:1rem">
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--gray-800)">Sitelinks</div>
+            <div style="font-size:.67rem;color:var(--gray-500);margin-top:.1rem">Sub-links shown under the main result (e.g. Pricing · Features · Blog)</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:#10B981;line-height:1">984</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">Lodgify linked</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:#EF4444;line-height:1">19,900</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">keywords missing</div>
+          </div>
+          <div>
+            <div style="background:#F3F4F6;border-radius:6px;height:8px;overflow:hidden;margin-bottom:.3rem">
+              <div style="height:100%;width:4.7%;background:#10B981;border-radius:6px"></div>
+            </div>
+            <div style="font-size:.6rem;color:var(--gray-400)">Lodgify sitelinks appear in <strong>4.7%</strong> of available slots</div>
+          </div>
+          <div><span class="badge-med issue-badge">Medium</span></div>
+        </div>
+        <div style="margin-top:.55rem;padding:.45rem .65rem;background:#EFF6FF;border-left:3px solid #3B82F6;border-radius:0 6px 6px 0;font-size:.67rem;color:#1E40AF">
+          <strong>Fix:</strong> Strengthen internal linking between top pages. Ensure homepage links to all key sections. Google auto-generates sitelinks from clear site architecture — one-time audit, ~2–3 hours.
+        </div>
+      </div>
+
+      <!-- Row: Image Results -->
+      <div style="border:1px solid #D1FAE5;border-radius:10px;padding:.85rem 1rem;margin-bottom:.6rem;background:#F0FDF4">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.8fr auto;align-items:center;gap:1rem">
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--gray-800)">Image Results</div>
+            <div style="font-size:.67rem;color:var(--gray-500);margin-top:.1rem">Visual images appearing in Google Search results and image carousels</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:#10B981;line-height:1">3,600</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">Lodgify linked</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:.85rem;font-weight:700;color:#059669;line-height:1.2">Strong<br>maintain</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">no action needed</div>
+          </div>
+          <div>
+            <div style="background:#D1FAE5;border-radius:6px;height:8px;overflow:hidden;margin-bottom:.3rem">
+              <div style="height:100%;width:100%;background:#10B981;border-radius:6px"></div>
+            </div>
+            <div style="font-size:.6rem;color:#059669;font-weight:600">Strong visual presence — best performing feature</div>
+          </div>
+          <div><span style="background:#ECFDF5;color:#059669;padding:.18rem .55rem;border-radius:5px;font-size:.65rem;font-weight:700;white-space:nowrap">✓ Good</span></div>
+        </div>
+        <div style="margin-top:.55rem;padding:.45rem .65rem;background:#D1FAE5;border-left:3px solid #10B981;border-radius:0 6px 6px 0;font-size:.67rem;color:#065F46">
+          <strong>Maintain:</strong> Continue using descriptive alt text and compressed images on all new blog posts. No structural changes needed.
+        </div>
+      </div>
+
+      <!-- Row: Video SERPs -->
+      <div style="border:1px solid var(--gray-200);border-radius:10px;padding:.85rem 1rem;margin-bottom:.9rem;background:#fff">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.8fr auto;align-items:center;gap:1rem">
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--gray-800)">Video SERPs</div>
+            <div style="font-size:.67rem;color:var(--gray-500);margin-top:.1rem">YouTube video carousels that appear directly in Google search results</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.5rem;font-weight:900;color:#9CA3AF;line-height:1">0</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">Lodgify linked</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:#EF4444;line-height:1">29,800</div>
+            <div style="font-size:.6rem;color:var(--gray-400);margin-top:.15rem">keywords open</div>
+          </div>
+          <div>
+            <div style="background:#F3F4F6;border-radius:6px;height:8px;overflow:hidden;margin-bottom:.3rem">
+              <div style="height:100%;width:0%;background:#10B981;border-radius:6px"></div>
+            </div>
+            <div style="font-size:.6rem;color:var(--gray-400)">Lodgify has a YouTube channel but <strong>0 videos rank in Google's video carousels</strong> for vacation rental keywords. Largest single gap in volume.</div>
+          </div>
+          <div><span class="badge-med issue-badge">Medium</span></div>
+        </div>
+        <div style="margin-top:.55rem;padding:.45rem .65rem;background:#EFF6FF;border-left:3px solid #3B82F6;border-radius:0 6px 6px 0;font-size:.67rem;color:#1E40AF">
+          <strong>Fix (future quarter):</strong> Lodgify has an active YouTube channel but existing videos aren't optimised for keyword-driven Google carousels. Add SEO-targeted titles, descriptions, and tags to existing videos, then create short topic-specific videos for top blog posts. Embed in posts — once indexed they appear in Google video carousels too.
+        </div>
+      </div>
+
+      <div class="src"><strong>Source: Semrush</strong> · SERP Features report · April 2026</div>
+    </div>
+    <div class="geo-dark">
+      <div class="sec-label">GEO Reality Check — April 16, 2026</div>
+      <h3>Lodgify AI Visibility: 51/100. Hostaway: 55/100.<br>A domain with 8× fewer backlinks is beating you in AI search.</h3>
+      <p>Both Lodgify and Hostaway are negligible in AI traffic — but Hostaway is structuring content better for LLM extraction. As ChatGPT, Perplexity, and Google AI Mode replace search for informational queries, whoever claims this space first wins. Right now, neither is winning. That's the opportunity.</p>
+      <div class="geo-stats">
+        <div><div class="geo-stat-v">3.5K</div><div class="geo-stat-l">Global AI Mentions · Apr 2026</div></div>
+        <div><div class="geo-stat-v">3.8K</div><div class="geo-stat-l">AI Cited Pages · Apr 2026</div></div>
+        <div><div class="geo-stat-v">55<span style="font-size:1rem;font-weight:600;color:#9CA3AF">/100</span></div><div class="geo-stat-l">Hostaway AI Visibility · Apr 2026</div></div>
+        <div><div class="geo-stat-v" style="color:#FF6B82">51<span style="font-size:1rem;font-weight:600;color:#9CA3AF">/100</span></div><div class="geo-stat-l">Lodgify AI Visibility · Apr 2026</div></div>
+        <div><div class="geo-stat-v" style="color:#FF6B82">14.8K</div><div class="geo-stat-l">AI Overviews Not Linked · Apr 2026</div></div>
+      </div>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="cc" style="margin-bottom:1.25rem">
+          <div class="cc-lbl">AI Platform Breakdown — Lodgify (Worldwide)</div>
+          <div class="cc-title">ChatGPT leads with 551 mentions · AI Mode growing fastest</div>
+          <canvas id="aiPlatformChart" height="180"></canvas>
+          <div class="src"><strong>Source: Semrush</strong> · AI Visibility report · April 2026</div>
+        </div>
+        <div class="cc">
+          <div class="cc-lbl">Lodgify vs Hostaway — AI Visibility</div>
+          <div class="cc-title">Hostaway wins despite weaker domain (39/100 vs 45/100 authority score)</div>
+          <canvas id="aiCompChart" height="140"></canvas>
+          <div class="src"><strong>Source: Semrush</strong> · AI Visibility report · April 2026</div>
+        </div>
+      </div>
+      <div class="issue-list">
+        <div class="issue">
+          <div class="issue-badge badge-crit">Critical GEO</div>
+          <div>
+            <h4>FAQPage Schema = #1 GEO Win</h4>
+            <p>FAQPage schema is the single highest-signal format for LLM extraction. Every post with a Q&amp;A section (currently all untagged) should be marked up immediately. This produces both SERP rich results AND increased AI citation likelihood.</p>
+            <div class="issue-fix">30 minutes per post. Tag all FAQ sections site-wide in the first 30 days. Expected AI visibility increase: +5–10 points on Semrush's 0–100 scale.</div>
+          </div>
+        </div>
+        <div class="issue">
+          <div class="issue-badge badge-crit">Critical GEO</div>
+          <div>
+            <h4>Answer-First Content Structure Missing</h4>
+            <p>LLMs extract the first 2-3 sentences of a post as the "answer." Lodgify posts currently bury answers after long preambles. Posts that lead with a direct, definitive answer are cited 3-5× more frequently by AI engines.</p>
+            <div class="issue-fix">Rewrite intros on top 20 organic posts to lead with a 2-3 sentence direct answer before expanding.</div>
+          </div>
+        </div>
+        <div class="issue">
+          <div class="issue-badge badge-high">High GEO</div>
+          <div>
+            <h4>AI Overview Gap: 14,800 Keywords Unclaimed</h4>
+            <p>Lodgify's keyword space triggers 14,800 Google AI Overview features. Only 499 link to Lodgify. Hostaway and others are capturing AI mentions for queries Lodgify is organically ranking for.</p>
+            <div class="issue-fix">Identify the 100 highest-traffic AI Overview keywords not linking to Lodgify. Optimize those post intros first.</div>
+          </div>
+        </div>
+        <div class="issue">
+          <div class="issue-badge badge-high">High GEO</div>
+          <div>
+            <h4>AI Search Health Only 79%</h4>
+            <p>Semrush's AI Search Health score (79/100) measures how well the site is optimized for generative engine inclusion — scored 0 to 100. A score of 79 means a 21-point gap from perfect: structural content issues are preventing AI citation including missing schema, no answer-first format, and weak E-E-A-T signals.</p>
+            <div class="issue-fix">Target 90+/100 AI Search Health through schema markup, E-E-A-T improvements, and structured Q&amp;A content.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PAGE 5 — CONTENT STRATEGY ══════════════════════════ -->
+<div class="page" id="p5">
+  <div class="container">
+    <div class="sec-label">Page 5 of 6 — Content Strategy &amp; On-Site SEO</div>
+    <h2 class="sec-title">Content Architecture Gaps — And What to Build Next</h2>
+    <div class="redbar"></div>
+    <div class="g2-wide" style="margin-bottom:1.75rem">
+      <div>
+        <div class="cc" style="margin-bottom:1.25rem">
+          <div class="cc-lbl">Top Organic Pages (US, Apr 15, 2026) — 3,827 Total</div>
+          <div class="cc-title">Customer subdomain sites dominate top pages — main blog underperforms</div>
+          <div style="margin-top:.5rem">
+            <div class="tpage-row">
+              <div class="tpage-url">lodgify.com/ (homepage)</div>
+              <div style="font-size:.75rem;color:var(--gray-500);white-space:nowrap">10.2K · 4.7K kws</div>
+              <div class="tpage-bar-wrap"><div class="tpage-bar" style="width:100%"></div></div>
+            </div>
+            <div class="tpage-row">
+              <div class="tpage-url">/blog/airbnb-guest-reviews/</div>
+              <div style="font-size:.75rem;color:var(--gray-500);white-space:nowrap">2.6K · 275 kws</div>
+              <div class="tpage-bar-wrap"><div class="tpage-bar" style="width:25%"></div></div>
+            </div>
+            <div class="tpage-row">
+              <div class="tpage-url">twinlakestinyhomes.lodgify.com ⚡</div>
+              <div style="font-size:.75rem;color:var(--amber);white-space:nowrap">2.3K · 71 kws</div>
+              <div class="tpage-bar-wrap"><div class="tpage-bar" style="width:22%;background:var(--amber)"></div></div>
+            </div>
+            <div class="tpage-row">
+              <div class="tpage-url">domes.lodgify.com ⚡</div>
+              <div style="font-size:.75rem;color:var(--amber);white-space:nowrap">2.0K · 11 kws</div>
+              <div class="tpage-bar-wrap"><div class="tpage-bar" style="width:20%;background:var(--amber)"></div></div>
+            </div>
+            <div class="tpage-row">
+              <div class="tpage-url">thebuzzardsroostms.lodgify.com ⚡</div>
+              <div style="font-size:.75rem;color:var(--amber);white-space:nowrap">1.9K · 196 kws</div>
+              <div class="tpage-bar-wrap"><div class="tpage-bar" style="width:19%;background:var(--amber)"></div></div>
+            </div>
+            <div class="tpage-row">
+              <div class="tpage-url">/vacation-rental-channel-manager/</div>
+              <div style="font-size:.75rem;color:var(--gray-500);white-space:nowrap">1.0K · 136 kws</div>
+              <div class="tpage-bar-wrap"><div class="tpage-bar" style="width:10%"></div></div>
+            </div>
+            <div class="tpage-row">
+              <div class="tpage-url">/guides/expedia/partner-central/</div>
+              <div style="font-size:.75rem;color:var(--green);white-space:nowrap">794 · +239 ↑</div>
+              <div class="tpage-bar-wrap"><div class="tpage-bar" style="width:8%;background:var(--green)"></div></div>
+            </div>
+          </div>
+          <div style="font-size:.72rem;color:var(--amber);margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--gray-200)">⚡ Customer vacation rental subdomains rank in top organic pages — diluting perception of main site strength</div>
+          <div class="src"><strong>Source: Semrush</strong> · Organic Research · April 2026</div>
+        </div>
+        <div class="cc">
+          <div class="cc-lbl">Keyword Intent Distribution (US)</div>
+          <div class="cc-title">49.4% informational — underserved transactional intent</div>
+          <canvas id="intentChart" height="130"></canvas>
+          <div class="src"><strong>Source: Semrush</strong> · Organic Research · April 2026</div>
+        </div>
+      </div>
+      <div class="issue-list">
+        <div style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-500);margin-bottom:.5rem">On-Site Issues</div>
+        <div class="issue">
+          <div class="issue-badge badge-crit">Critical</div>
+          <div>
+            <h4>Zero Schema Markup Across All Posts</h4>
+            <p>No Article, HowTo, or BreadcrumbList schema detected anywhere on the blog. The SEO tips guide is HowTo-eligible. Every how-to and listicle post is missing Article schema (author, datePublished). These are quick template-level fixes with direct ranking and AI citation impact.</p>
+            <div class="issue-fix">Implement Article + HowTo schema site-wide via template. Estimated indexing gains: 2–4 weeks post-implementation.</div>
+          </div>
+        </div>
+        <div class="issue">
+          <div class="issue-badge badge-high">High</div>
+          <div>
+            <h4>6.8K Missing Keywords vs Hostaway</h4>
+            <p>Keyword Gap analysis reveals 6.8K keywords where Hostaway ranks but Lodgify doesn't. Top high-volume gaps include "best short term rental software" (AI Overview feature, 260 vol) and "resort management software" (480 vol). These are direct BOFU queries.</p>
+            <div class="issue-fix">Export the 6.8K missing keywords, prioritize by commercial intent + volume, create targeted content for top 20.</div>
+          </div>
+        </div>
+        <div class="issue">
+          <div class="issue-badge badge-high">High</div>
+          <div>
+            <h4>No Comparison/BOFU Content Published</h4>
+            <p>Guesty actively publishes "Lodgify vs." content targeting "lodgify alternatives" and "best vacation rental software." Lodgify has no comparison pages. High-intent BOFU traffic goes directly to competitors.</p>
+            <div class="issue-fix">Publish: Lodgify vs. Guesty · vs. Hostaway · vs. OwnerRez. Target 3 posts within the first 60 days.</div>
+          </div>
+        </div>
+        <div class="issue">
+          <div class="issue-badge badge-high">High</div>
+          <div>
+            <h4>France: 76.87% Visibility, Avg. Position 11.10</h4>
+            <p>France (6.26% of traffic) shows 76.87% keyword visibility but avg. position 11.10 — just outside the top-10 threshold. Improving hreflang and localizing top 20 FR posts to position 1-10 would meaningfully grow French organic traffic.</p>
+            <div class="issue-fix">Audit hreflang for FR/ES. Translate/localize top 10 blog posts per market. Target position ≤8 for FR keywords.</div>
+          </div>
+        </div>
+        <div class="issue">
+          <div class="issue-badge badge-med">Medium</div>
+          <div>
+            <h4>Thin Content on Competitive Topics</h4>
+            <p>The short-term rental tax loophole post is ~5 min read (~1,000 words) for a high-KD financial query. Competing pages run 2,500+ words with IRS references, expert quotes, and state-by-state data.</p>
+            <div class="issue-fix">Expand top 10 competitive posts to 2,000+ words. Add original data, expert quotes, structured tables.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PAGE 6 — ROADMAP + SCORECARD ══════════════════════════ -->
+<div class="page" id="p6">
+  <div class="container">
+    <div class="sec-label">Page 6 of 6 — 90-Day Roadmap &amp; Score Card</div>
+    <h2 class="sec-title">Priority Action Plan — Sequenced by Impact</h2>
+    <div class="redbar"></div>
+    <div class="roadmap-grid" style="margin-bottom:2.5rem">
+      <div class="rphase">
+        <div class="rphase-head p1">
+          <div class="rphase-period">Days 1–30 · Critical Fixes</div>
+          <div class="rphase-name">🔴 First Month</div>
+        </div>
+        <div class="rphase-body">
+          <div class="ritem"><div class="rnum">1</div><div>Add <strong>FAQPage schema</strong> to all posts with Q&amp;A sections — 30 min/post, rich results in 2–4 weeks, dual GEO benefit</div></div>
+          <div class="ritem"><div class="rnum">2</div><div>Add <strong>Article schema</strong> (author, datePublished, dateModified) site-wide — one template change</div></div>
+          <div class="ritem"><div class="rnum">3</div><div>Run <strong>Lighthouse mobile audit</strong> on top 10 posts — fix CWV failures (currently "Not implemented")</div></div>
+          <div class="ritem"><div class="rnum">4</div><div>Add <strong>H1 tag to /blog/ index</strong> — single template line, immediate crawl signal improvement</div></div>
+          <div class="ritem"><div class="rnum">5</div><div>Set <strong>"Uncategorized" category page to noindex</strong> — 10-minute fix, removes crawl budget waste</div></div>
+        </div>
+      </div>
+      <div class="rphase">
+        <div class="rphase-head p2">
+          <div class="rphase-period">Days 30–60 · High Priority</div>
+          <div class="rphase-name">🟡 Second Month</div>
+        </div>
+        <div class="rphase-body">
+          <div class="ritem"><div class="rnum">6</div><div>Rewrite intros on top 20 organic posts in <strong>answer-first format</strong> — 2-3 sentence direct answer before elaborating</div></div>
+          <div class="ritem"><div class="rnum">7</div><div>Add <strong>"Last Updated" dates</strong> to all evergreen posts + sync dateModified in Article schema</div></div>
+          <div class="ritem"><div class="rnum">8</div><div>Publish <strong>3 comparison posts</strong>: Lodgify vs. Guesty · vs. Hostaway · vs. OwnerRez (BOFU traffic)</div></div>
+          <div class="ritem"><div class="rnum">9</div><div>Target <strong>top 20 AI Overview missed keywords</strong> — optimize posts currently not linked in AI results</div></div>
+        </div>
+      </div>
+      <div class="rphase">
+        <div class="rphase-head p3">
+          <div class="rphase-period">Days 60–90 · Strategic Growth</div>
+          <div class="rphase-name">🟢 Third Month</div>
+        </div>
+        <div class="rphase-body">
+          <div class="ritem"><div class="rnum">10</div><div>Build <strong>5 pillar pages</strong> (VR Management, STR Marketing, Regulations, Finance, Software) — hub-and-spoke architecture</div></div>
+          <div class="ritem"><div class="rnum">11</div><div>Launch <strong>"State of STR 2026" data report</strong> — Lodgify customer data for earned media, backlinks, and AI citations</div></div>
+          <div class="ritem"><div class="rnum">12</div><div>Fix <strong>hreflang for FR &amp; ES</strong> — France at avg. position 11.10 has quick wins just off page 1</div></div>
+          <div class="ritem"><div class="rnum">13</div><div>Audit &amp; target the <strong>6.8K missing keywords</strong> vs. Hostaway — prioritize commercial intent + vol</div></div>
+          <div class="ritem"><div class="rnum">14</div><div>Implement <strong>HARO/Qwoted expert responses</strong> — earn high-DA editorial links + AI training data citations</div></div>
+          <div class="ritem"><div class="rnum">15</div><div>Optimise <strong>YouTube/video content for SEO</strong> — Lodgify has a channel but 0 videos appear in Google's 29.8K video SERP carousels for vacation rental keywords</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCORE CARD -->
+    <div style="margin-bottom:1.5rem">
+      <div class="sec-label" style="margin-bottom:.5rem">Score Card — Current State vs. 90-Day Target</div>
+      <div class="score-row">
+        <div class="score-cell">
+          <div class="score-area">On-Site Content</div>
+          <div class="score-num s5">6<span class="score-den">/10</span></div>
+          <div class="score-sub">Thin posts, no schema, no answer-first structure</div>
+        </div>
+        <div class="score-cell">
+          <div class="score-area">Technical SEO</div>
+          <div class="score-num s5">5<span class="score-den">/10</span></div>
+          <div class="score-sub">CWV failed, JS pagination, crawl gap</div>
+        </div>
+        <div class="score-cell">
+          <div class="score-area">Off-Site / Links</div>
+          <div class="score-num s6">6<span class="score-den">/10</span></div>
+          <div class="score-sub">Strong volume, weak editorial quality</div>
+        </div>
+        <div class="score-cell">
+          <div class="score-area">GEO / AI Search</div>
+          <div class="score-num s2">2<span class="score-den">/10</span></div>
+          <div class="score-sub">0 FAQ schema, 14.8K AI OV missed</div>
+        </div>
+        <div class="score-cell">
+          <div class="score-area">Content Strategy</div>
+          <div class="score-num s5">5<span class="score-den">/10</span></div>
+          <div class="score-sub">No comparison pages, no pillar pages</div>
+        </div>
+        <div class="score-cell overall-cell">
+          <div class="score-area">Overall</div>
+          <div class="score-num s5" style="color:var(--red)">4.8<span class="score-den">/10</span></div>
+          <div class="score-sub" style="font-weight:700">Strong domain, fixable gaps</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-lbl">SEO &amp; GEO Health Radar — Current State vs. After 90 Days</div>
+      <div class="cc-title">Every category improves significantly with the recommended fixes — GEO is the biggest lever</div>
+      <canvas id="radarChart" height="100"></canvas>
+      <div class="src"><strong>Source: Semrush</strong> · Site Audit, Domain Overview &amp; AI Visibility · April 2026 · Projections based on audit analysis</div>
+    </div>
+
+    <div class="callout" style="margin-top:1.5rem">
+      <div class="callout-t">💡 The Bottom Line</div>
+      <p>Lodgify's domain has everything needed to dominate the STR search space: 27.7K referring domains, 1.6M backlinks, 45/100 authority score, 91K organic keywords worldwide. The gaps are structural, not strategic — zero schema, no BOFU content, and an AI search presence 4 points behind a far weaker competitor. These are all fixable within 90 days. The first-mover window for AI search optimization in the STR vertical is open right now — and both Lodgify and Hostaway are leaving it unclaimed.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PAGE 7 — ABOUT THE ANALYST ══════════════════════════ -->
+<div class="page" id="p7">
+  <div class="container">
+
+    <!-- Section Header -->
+    <div style="display:grid;grid-template-columns:1fr 380px;gap:3rem;align-items:start;margin-bottom:3.5rem">
+      <div>
+        <div class="sec-label">Analyst Profile — About the Analyst</div>
+        <!-- Accurate Lodgify logo — dark text version for white background -->
+        <div style="margin-bottom:1.25rem">
+          <svg viewBox="0 0 215 50" xmlns="http://www.w3.org/2000/svg" height="32" style="display:block">
+            <path d="M0 0 L29 0 L29 29 L47 29 L47 47 L0 47 Z" fill="#FF3B59"/>
+            <rect x="30" y="1" width="16" height="16" fill="#1ECFB3"/>
+            <text x="60" y="35" font-family="'Source Sans 3',Arial,sans-serif" font-size="28" font-weight="800" fill="#2D2D2D" letter-spacing="2">LODGIFY</text>
+          </svg>
+        </div>
+        <h2 class="sec-title">The Person Behind This Report</h2>
+        <div class="redbar"></div>
+        <p style="font-size:1rem;color:#6B7280;line-height:1.65;max-width:600px">I produced this audit as part of my application for Lodgify's GEO/SEO Intern role. Below is my background, why I'm the right fit, and exactly how I approach SEO strategy end-to-end.</p>
+      </div>
+      <!-- Profile card -->
+      <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;padding:2rem;text-align:center">
+        <div style="width:76px;height:76px;background:linear-gradient(135deg,#FF3B59,#FF7B95);border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:1.7rem;font-weight:800;color:#fff;letter-spacing:-.02em">MS</div>
+        <div style="font-size:1.2rem;font-weight:800;color:#111827;letter-spacing:-.02em">Mahmoud Samir</div>
+        <div style="font-size:.78rem;color:#FF3B59;font-weight:700;margin:.3rem 0 1.25rem;letter-spacing:.04em">Growth &amp; E-Commerce Marketing Specialist</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;text-align:left">
+          <div style="font-size:.78rem;color:#6B7280;display:flex;gap:.5rem;align-items:center"><span>📍</span> Valencia, Spain</div>
+          <div style="font-size:.78rem;color:#6B7280;display:flex;gap:.5rem;align-items:center"><span>✉️</span> mahmoudmohsamir@gmail.com</div>
+          <div style="font-size:.78rem;color:#3B82F6;display:flex;gap:.5rem;align-items:center"><span>🔗</span> linkedin.com/in/mahmoud-mercuri</div>
+          <div style="font-size:.78rem;color:#6B7280;display:flex;gap:.5rem;align-items:center"><span>📱</span> +34 653 209 143</div>
+        </div>
+        <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid #E5E7EB">
+          <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:#9CA3AF;margin-bottom:.6rem">Education</div>
+          <div style="font-size:.78rem;color:#374151;font-weight:600;line-height:1.4">European Master's in CRM Marketing</div>
+          <div style="font-size:.72rem;color:#9CA3AF;margin-top:.2rem">CEU Cardinal Herrera, Spain · Ongoing</div>
+          <div style="font-size:.72rem;color:#9CA3AF">Exchange: Germany · Italy · Poland</div>
+          <div style="font-size:.78rem;color:#374151;font-weight:600;line-height:1.4;margin-top:.7rem">BSc Business, Ain Shams University</div>
+          <div style="font-size:.72rem;color:#9CA3AF;margin-top:.2rem">Very Good with Honors · 3.6 GPA · 2021</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Timeline -->
+    <div style="margin-bottom:3rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FF3B59;margin-bottom:1.25rem">SEO &amp; Growth Experience</div>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+
+        <div style="background:#fff;border:1px solid #E5E7EB;border-left:4px solid #FF3B59;border-radius:0 12px 12px 0;padding:1.3rem 1.5rem">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem">
+            <div>
+              <div style="font-size:.95rem;font-weight:700;color:#111827">PPC &amp; Growth Marketing Specialist — Pets Sparkle</div>
+              <div style="font-size:.75rem;color:#FF3B59;font-weight:600;margin-top:.2rem">USA · Part-time Remote · May 2022 – Present</div>
+            </div>
+            <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:.2rem .75rem;font-size:.68rem;font-weight:700;color:#059669;white-space:nowrap">1 Year SEO</div>
+          </div>
+          <p style="font-size:.84rem;color:#6B7280;line-height:1.6">Owned full performance marketing for a US e-commerce pet brand — Amazon PPC campaigns, Google Ads &amp; Meta Ads management, A+ Content, affiliate marketing, and Shopify growth strategy. Contributed directly to generating <strong style="color:#111827">$300K+ in Shopify revenue</strong> and scaling the brand to <strong style="color:#111827">110K+ social followers</strong>. SEO ran alongside paid: Amazon listing keyword optimization, Shopify on-page SEO, and multi-platform content strategy — building the organic foundation that made paid spend more efficient.</p>
+        </div>
+
+        <div style="background:#FFF8F9;border:1px solid #FFD6DD;border-left:4px solid #FF3B59;border-radius:0 12px 12px 0;padding:1.3rem 1.5rem">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem">
+            <div>
+              <div style="font-size:.95rem;font-weight:700;color:#111827">Digital Marketing Intern (SEO + Google Ads) — Walego</div>
+              <div style="font-size:.75rem;color:#FF3B59;font-weight:600;margin-top:.2rem">Spain · Part-time Remote · March 2025 – April 2026</div>
+            </div>
+            <div style="background:#FFF0F3;border:1px solid #FFB3C0;border-radius:6px;padding:.2rem .75rem;font-size:.68rem;font-weight:700;color:#FF3B59;white-space:nowrap">SEO &amp; PPC</div>
+          </div>
+          <p style="font-size:.84rem;color:#6B7280;line-height:1.6">Worked directly on Walego's <strong style="color:#111827">Google Ads, Google Analytics, Google Search Console, GTM, and SEO</strong> — managing live paid campaigns, tracking inbound performance, and optimizing conversion flows for a live B2B SaaS product. On the SEO side, optimized key pages using Claude AI: the About Us page, site-wide FAQ sections, and on-page content across core landing pages. Built out a content calendar for organic reach and targeted non-branded keywords. Over 13 months, owned both paid and organic channels end-to-end for a live product — exactly the scope Lodgify's GEO/SEO role requires.</p>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E5E7EB;border-left:4px solid #3B82F6;border-radius:0 12px 12px 0;padding:1.3rem 1.5rem">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem">
+            <div>
+              <div style="font-size:.95rem;font-weight:700;color:#111827">Growth Marketing Intern — The Startup Club</div>
+              <div style="font-size:.75rem;color:#6B7280;font-weight:600;margin-top:.2rem">Germany · Full-time · May–Aug 2025</div>
+            </div>
+            <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:6px;padding:.2rem .75rem;font-size:.68rem;font-weight:700;color:#2563EB;white-space:nowrap">Growth &amp; Outbound</div>
+          </div>
+          <p style="font-size:.84rem;color:#6B7280;line-height:1.6">Full-time growth role handling outbound research, email marketing, SEO content writing, and campaign performance reporting. Reinforced my outbound and growth toolkit — skills I apply directly to top-of-funnel content strategy and link acquisition for any SEO engagement.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Why I'm the Right Fit -->
+    <div style="margin-bottom:3rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FF3B59;margin-bottom:1.25rem">Why I'm the Right Fit for Lodgify's GEO/SEO Intern Role</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem">
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:1.4rem;border-top:3px solid #FF3B59">
+          <div style="font-size:1.3rem;margin-bottom:.6rem">🔍</div>
+          <div style="font-size:.9rem;font-weight:700;color:#111827;margin-bottom:.4rem">Proven Multi-Platform SEO</div>
+          <p style="font-size:.8rem;color:#6B7280;line-height:1.6">Hands-on SEO across Shopify, Amazon, and SaaS — on-page, technical, and content. From product listing optimization to blog content architecture. Not theoretical: revenue-attributed outcomes ($300K+ at Pets Sparkle).</p>
+        </div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:1.4rem;border-top:3px solid #FF3B59">
+          <div style="font-size:1.3rem;margin-bottom:.6rem">⚙️</div>
+          <div style="font-size:.9rem;font-weight:700;color:#111827;margin-bottom:.4rem">AI Automation in Practice</div>
+          <p style="font-size:.8rem;color:#6B7280;line-height:1.6">Already automating marketing workflows with AI at Walego — directly matching the "automation" in the job title. I integrate AI tools into SEO pipelines, content production, and reporting. Actively learning GEO and eager to specialize further under Lodgify's guidance.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:1.4rem;border-top:3px solid #FF3B59">
+          <div style="font-size:1.3rem;margin-bottom:.6rem">📈</div>
+          <div style="font-size:.9rem;font-weight:700;color:#111827;margin-bottom:.4rem">Growth &amp; Outbound Depth</div>
+          <p style="font-size:.8rem;color:#6B7280;line-height:1.6">Professional across acquisition-driven growth: Google Ads, Meta Ads, TikTok Shop, affiliate, email — all channels run end-to-end. Growth experience means I see how SEO integrates into the full acquisition funnel, not just as isolated rankings.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:1.4rem;border-top:3px solid #FF3B59">
+          <div style="font-size:1.3rem;margin-bottom:.6rem">🌍</div>
+          <div style="font-size:.9rem;font-weight:700;color:#111827;margin-bottom:.4rem">Based in Spain · Multi-Market Exposure</div>
+          <p style="font-size:.8rem;color:#6B7280;line-height:1.6">Based in Valencia — same country as Lodgify HQ in Barcelona. Studied and worked across Spain, Germany, Italy, and Poland. Comfortable in international, multi-language marketing contexts relevant to Lodgify's ES, FR, DE, IT expansion.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:1.4rem;border-top:3px solid #FF3B59">
+          <div style="font-size:1.3rem;margin-bottom:.6rem">🤖</div>
+          <div style="font-size:.9rem;font-weight:700;color:#111827;margin-bottom:.4rem">Actively Learning GEO</div>
+          <p style="font-size:.8rem;color:#6B7280;line-height:1.6">GEO is the newest frontier in search — and this audit is evidence of hands-on learning. I study how LLMs extract content, what makes a page citation-worthy, and how schema markup drives AI visibility. Eager to specialize in this under Lodgify's team.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:1.4rem;border-top:3px solid #FF3B59">
+          <div style="font-size:1.3rem;margin-bottom:.6rem">🎓</div>
+          <div style="font-size:.9rem;font-weight:700;color:#111827;margin-bottom:.4rem">Master's in CRM Marketing · Ongoing</div>
+          <p style="font-size:.8rem;color:#6B7280;line-height:1.6">European Master's across 4 countries covering acquisition, retention, and data-driven growth. Academic grounding in customer journey strategy complements practical SEO work and aligns with Lodgify's content-to-conversion mission.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Methodology -->
+    <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;padding:2.5rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FF3B59;margin-bottom:.5rem">My SEO Methodology</div>
+      <h3 style="font-size:1.6rem;font-weight:800;color:#111827;margin-bottom:.6rem;line-height:1.2">How I Approach SEO — Research, Analysis &amp; Integration</h3>
+      <div style="width:48px;height:4px;background:#FF3B59;border-radius:2px;margin-bottom:1rem"></div>
+      <p style="font-size:.88rem;color:#6B7280;max-width:780px;line-height:1.65;margin-bottom:2.5rem">I always start with the competitive landscape before touching a single line of content. Every engagement follows a structured 3-step process: understand competitors → audit own site → integrate all signals. The entire workflow is grounded in manual research first, then validated and scaled with tools and AI automation.</p>
+
+      <!-- Step 1 -->
+      <div style="display:flex;gap:1.5rem;margin-bottom:1.75rem;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex-shrink:0;width:48px;height:48px;background:#FF3B59;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;color:#fff">1</div>
+        <div style="flex:1;min-width:260px">
+          <div style="font-size:1rem;font-weight:700;color:#111827;margin-bottom:.4rem">Competitor Analysis — Manual First, Then Tools</div>
+          <p style="font-size:.84rem;color:#6B7280;line-height:1.6;margin-bottom:.75rem">Before looking at our own site, I spend time manually browsing the top 5 competitors' highest-ranking pages — how they structure their H1/H2 hierarchy, what schema markup they implement, how their FAQ sections are formatted, what their content depth is per target keyword, and how they handle internal linking. I then layer on dedicated SEO tools (Ahrefs and Semrush) to pull keyword gap data: what keywords competitors rank for that we don't, where their backlinks come from, and what SERP features they're winning. Manual review shows me <em>strategy</em>; the tools show me <em>scale</em>.</p>
+          <div style="display:flex;gap:.55rem;flex-wrap:wrap">
+            <span style="background:#FFF0F3;border:1px solid rgba(255,59,89,.2);color:#FF3B59;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Manual SERP Review</span>
+            <span style="background:#FFF0F3;border:1px solid rgba(255,59,89,.2);color:#FF3B59;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Keyword Gap (Ahrefs / Semrush)</span>
+            <span style="background:#FFF0F3;border:1px solid rgba(255,59,89,.2);color:#FF3B59;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Competitor Backlink Audit</span>
+            <span style="background:#FFF0F3;border:1px solid rgba(255,59,89,.2);color:#FF3B59;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">SERP Feature Mapping</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="display:flex;gap:1.5rem;margin-bottom:1.75rem;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex-shrink:0;width:48px;height:48px;background:#D97706;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;color:#fff">2</div>
+        <div style="flex:1;min-width:260px">
+          <div style="font-size:1rem;font-weight:700;color:#111827;margin-bottom:.4rem">Own Site Deep-Dive — 4-Source Analysis</div>
+          <p style="font-size:.84rem;color:#6B7280;line-height:1.6;margin-bottom:.75rem">I mirror the same review on the client's site using four data sources simultaneously. <strong style="color:#374151">Google Search Console</strong> shows me which keywords we already rank for (even partially), CTR vs. impressions gaps, and position trends — this is my first keyword research source because it's ground truth, not estimates. <strong style="color:#374151">Google Ads search terms</strong> (when active) reveal high-intent, revenue-validated keywords the audience already uses to find us — an often-ignored goldmine for organic keyword targeting. <strong style="color:#374151">Ahrefs / Semrush site audit</strong> surfaces technical issues, orphaned pages, and keyword ranking distributions. And a <strong style="color:#374151">manual crawl</strong> of top pages validates what the tools can't see — actual UX, content quality, schema implementation, and internal link anchor text.</p>
+          <div style="display:flex;gap:.55rem;flex-wrap:wrap">
+            <span style="background:#FFFBEB;border:1px solid rgba(245,158,11,.25);color:#D97706;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Google Search Console</span>
+            <span style="background:#FFFBEB;border:1px solid rgba(245,158,11,.25);color:#D97706;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Google Ads Search Terms</span>
+            <span style="background:#FFFBEB;border:1px solid rgba(245,158,11,.25);color:#D97706;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Ahrefs / Semrush Audit</span>
+            <span style="background:#FFFBEB;border:1px solid rgba(245,158,11,.25);color:#D97706;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Manual Page Crawl</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div style="display:flex;gap:1.5rem;margin-bottom:2rem;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex-shrink:0;width:48px;height:48px;background:#059669;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;color:#fff">3</div>
+        <div style="flex:1;min-width:260px">
+          <div style="font-size:1rem;font-weight:700;color:#111827;margin-bottom:.4rem">Integration — All 4 Sources, Automated with Claude</div>
+          <p style="font-size:.84rem;color:#6B7280;line-height:1.6;margin-bottom:.75rem">The real insights emerge at the intersection of all four signals: <strong style="color:#374151">Google Analytics</strong> (behavior: bounce rate, session time, scroll depth, conversion paths), <strong style="color:#374151">Google Search Console</strong> (impressions, CTR, position by keyword), <strong style="color:#374151">Ahrefs / Semrush</strong> (authority, backlink quality, keyword gap with competitors), and <strong style="color:#374151">Claude AI</strong> for automation and pattern recognition at scale. When a page shows declining impressions in Search Console, low time-on-page in Analytics, a competitor keyword gap in Ahrefs / Semrush, and no schema from the audit — that's a clear, quantified, prioritized fix. I use Claude to automate this cross-referencing: flagging priority pages, generating schema markup drafts, mapping content gaps to search intent, and producing priority matrices — work that would take days manually is done in hours.</p>
+          <div style="display:flex;gap:.55rem;flex-wrap:wrap">
+            <span style="background:#ECFDF5;border:1px solid rgba(5,150,105,.25);color:#059669;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Google Analytics 4</span>
+            <span style="background:#ECFDF5;border:1px solid rgba(5,150,105,.25);color:#059669;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Google Search Console</span>
+            <span style="background:#ECFDF5;border:1px solid rgba(5,150,105,.25);color:#059669;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Ahrefs / Semrush</span>
+            <span style="background:#ECFDF5;border:1px solid rgba(5,150,105,.25);color:#059669;padding:.22rem .65rem;border-radius:6px;font-size:.7rem;font-weight:700">Claude AI Automation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyword Research callout box -->
+      <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-left:4px solid #3B82F6;border-radius:0 10px 10px 0;padding:1.1rem 1.4rem;margin-bottom:2rem">
+        <div style="font-size:.8rem;font-weight:700;color:#1E40AF;margin-bottom:.4rem">🔑 My Keyword Research Sources — All Four, Every Time</div>
+        <p style="font-size:.82rem;color:#1E3A8A;line-height:1.6">I never rely on a single keyword source. I always combine: <strong>(1) Google Search Console</strong> — what we already rank for (the safest expansion territory); <strong>(2) Google Ads search terms</strong> — actual user queries that converted or engaged, directly mapped to organic opportunities; <strong>(3) Ahrefs / Semrush competitor keyword database</strong> — what competitors rank for that we don't (the gap), and what both of us rank for but they rank higher (the weak spots); <strong>(4) Manual search exploration</strong> — typing queries into Google myself to see People Also Ask boxes, AI Overviews, featured snippets, and related searches that tools often miss. These four sources together create a complete, validated keyword universe — not just a list, but a prioritized, intent-mapped content plan.</p>
+      </div>
+
+      <!-- 3-Layer Strategy -->
+      <div style="border-top:1px solid #E5E7EB;padding-top:2rem">
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FF3B59;margin-bottom:1.25rem">My Strategy Across the 3 SEO Layers</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem">
+
+          <div style="background:#fff;border:1px solid #E5E7EB;border-top:3px solid #FF3B59;border-radius:12px;padding:1.4rem">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+              <div style="width:36px;height:36px;background:#FF3B59;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">📝</div>
+              <div style="font-size:1rem;font-weight:800;color:#111827">On-Site SEO</div>
+            </div>
+            <p style="font-size:.82rem;color:#6B7280;line-height:1.65">Full content audit first: H1/H2 structure, title-to-H1 alignment, keyword density, internal link flow, schema gaps. I prioritize pages by traffic potential × current position — pages ranking 6–15 get attention first (fastest wins). Every high-value page gets FAQPage + Article schema, an answer-first intro rewrite for GEO, and a content depth review against top-3 competitors for that keyword. Thin content always gets expanded before new content is written.</p>
+          </div>
+
+          <div style="background:#fff;border:1px solid #E5E7EB;border-top:3px solid #3B82F6;border-radius:12px;padding:1.4rem">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+              <div style="width:36px;height:36px;background:#3B82F6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🔗</div>
+              <div style="font-size:1rem;font-weight:800;color:#111827">Off-Site SEO</div>
+            </div>
+            <p style="font-size:.82rem;color:#6B7280;line-height:1.65">Off-site is a content and relationship play, not a link-buying operation. Strategy: (1) original data reports for editorial links from industry media — highest-trust links; (2) expert responses to journalist queries for high-authority publications; (3) community partnerships with forums, host groups, and YouTube creators for brand mentions that AI models index; (4) digital PR around product milestones. 10 editorial links from high-authority domains outperform 500 directory listings every time.</p>
+          </div>
+
+          <div style="background:#fff;border:1px solid #E5E7EB;border-top:3px solid #8B5CF6;border-radius:12px;padding:1.4rem">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+              <div style="width:36px;height:36px;background:#8B5CF6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">⚙️</div>
+              <div style="font-size:1rem;font-weight:800;color:#111827">Technical SEO</div>
+            </div>
+            <p style="font-size:.82rem;color:#6B7280;line-height:1.65">Technical is always week-one priority — content work is wasted if crawlers can't access it. Full site audit using Ahrefs + manual checks: crawl errors and broken links first, then pagination (JS "Load More" → HTML), then Core Web Vitals (especially mobile LCP). Structured data for every eligible page type. Verification of robots.txt, canonical tags, hreflang for multilingual sites, and XML sitemap validity. Technical debt compounds — fixing it early multiplies the impact of every content change that follows.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:.4rem"><strong>Lodgify SEO &amp; GEO Audit Report</strong> · April 16, 2026 · Confidential</div>
+  <div>Data gathered via <strong>Semrush</strong> (Domain Overview, Site Audit, AI Visibility, Keyword Gap) · Competitive benchmarking · Direct site analysis · April 15–16, 2026</div>
+  <div style="margin-top:.6rem">Prepared as part of an application for Lodgify's GEO/SEO Intern role</div>
+</footer>
+
+<script>
+Chart.defaults.font.family = "'Source Sans 3', sans-serif";
+Chart.defaults.color = '#6B7280';
+Chart.defaults.plugins.legend.labels.boxWidth = 12;
+Chart.defaults.plugins.legend.labels.font = { size: 11 };
+
+const R = '#FF3B59', D = '#0F1117', G = '#10B981', A = '#F59E0B', B = '#3B82F6';
+
+// 0 — Core Web Vitals
+new Chart(document.getElementById('cwvChart'), {
+  type: 'bar',
+  data: {
+    labels: ['LCP\n(target <2.5s)', 'INP\n(target <200ms)', 'CLS\n(target <0.1)', 'FCP\n(target <1.8s)', 'TTFB\n(target <0.8s)'],
+    datasets: [
+      {
+        label: 'Actual (Failing)',
+        data: [3.3, 0.361, 0.17, 3.3, 2.8],
+        backgroundColor: ['#EF4444','#F59E0B','#F59E0B','#EF4444','#EF4444'],
+        borderRadius: 5,
+        barPercentage: 0.45
+      },
+      {
+        label: 'Google "Good" Threshold',
+        data: [2.5, 0.2, 0.1, 1.8, 0.8],
+        backgroundColor: 'rgba(16,185,129,0.25)',
+        borderColor: '#10B981',
+        borderWidth: 2,
+        borderRadius: 5,
+        barPercentage: 0.45
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            const units = ['s','s (INP)','(CLS)','s','s'];
+            return ctx.dataset.label + ': ' + ctx.parsed.y + (ctx.dataIndex === 1 ? 's' : ctx.dataIndex === 2 ? '' : 's');
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { font: { size: 10 }, color: '#6B7280' }
+      },
+      y: {
+        grid: { color: '#F3F4F6' },
+        ticks: { font: { size: 10 }, color: '#6B7280' },
+        title: { display: true, text: 'Seconds / Score', font: { size: 10 }, color: '#9CA3AF' }
+      }
+    }
+  }
+});
+
+// 1 — Organic Traffic Comparison
+new Chart(document.getElementById('orgTrafficChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Lodgify', 'Hostaway'],
+    datasets: [
+      { label: 'Organic Traffic (Global)', data: [263900, 57200], backgroundColor: [R, D], borderRadius: 6 }
+    ]
+  },
+  options: {
+    responsive: true, plugins: { legend: { display: false } },
+    scales: {
+      y: { ticks: { callback: v => (v/1000).toFixed(0)+'K' }, grid: { color: '#F3F4F6' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// 2 — AI Visibility
+new Chart(document.getElementById('aiVisChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Hostaway', 'Lodgify'],
+    datasets: [
+      { label: 'AI Visibility Score', data: [55, 51], backgroundColor: [D, R], borderRadius: 6 },
+      { label: 'Authority Score', data: [39, 45], backgroundColor: ['#374151', '#FF7B95'], borderRadius: 6 }
+    ]
+  },
+  options: {
+    responsive: true, indexAxis: 'y',
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { max: 60, grid: { color: '#F3F4F6' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// 3 — Keyword Gap
+new Chart(document.getElementById('kgapChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Lodgify Unique (14.5K)', 'Shared (5.6K)', 'Missing / Hostaway wins (6.8K)', 'Weak (2.6K)'],
+    datasets: [{
+      data: [14500, 5600, 6800, 2600],
+      backgroundColor: [G, A, '#EF4444', '#9CA3AF'],
+      borderWidth: 0, hoverOffset: 4
+    }]
+  },
+  options: {
+    responsive: true, cutout: '62%',
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } }
+  }
+});
+
+// 4 — Backlinks
+new Chart(document.getElementById('backlinkChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Lodgify', 'Hostaway', 'Hospitable', 'Guesty'],
+    datasets: [{
+      label: 'Backlinks',
+      data: [1600000, 56400, 35000, 45000],
+      backgroundColor: [R, D, '#374151', '#6B7280'], borderRadius: 5
+    }]
+  },
+  options: {
+    responsive: true, plugins: { legend: { display: false } },
+    scales: {
+      y: { ticks: { callback: v => v >= 1000000 ? (v/1000000).toFixed(1)+'M' : (v/1000).toFixed(0)+'K' }, grid: { color: '#F3F4F6' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// 5 — AI Platform Breakdown
+new Chart(document.getElementById('aiPlatformChart'), {
+  type: 'bar',
+  data: {
+    labels: ['ChatGPT', 'AI Mode', 'AI Overview', 'Gemini'],
+    datasets: [
+      { label: 'Lodgify Mentions', data: [551, 1200, 984, 836], backgroundColor: R, borderRadius: 4 },
+      { label: 'Hostaway Mentions', data: [404, 1400, 754, 480], backgroundColor: D, borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      y: { grid: { color: '#F3F4F6' }, ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(1)+'K' : v } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// 6 — AI Score Comparison
+new Chart(document.getElementById('aiCompChart'), {
+  type: 'bar',
+  data: {
+    labels: ['AI Visibility', 'AI Mentions (K)', 'Cited Pages (K)'],
+    datasets: [
+      { label: 'Lodgify', data: [51, 3.5, 3.8], backgroundColor: R, borderRadius: 5 },
+      { label: 'Hostaway', data: [55, 3.1, 3.7], backgroundColor: D, borderRadius: 5 }
+    ]
+  },
+  options: {
+    responsive: true, plugins: { legend: { position: 'top' } },
+    scales: {
+      y: { grid: { color: '#F3F4F6' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// 7 — Site Audit Breakdown
+// Issues by Severity — horizontal bar, all 7 issues
+new Chart(document.getElementById('issuesSeverityChart'), {
+  type: 'bar',
+  data: {
+    labels: [
+      'Core Web Vitals',
+      'Zero FAQ Schema',
+      'Logo Navigation',
+      'Missing H1s'
+    ],
+    datasets: [{
+      label: 'Severity',
+      data: [3, 3, 2, 2],
+      backgroundColor: ['#EF4444','#EF4444','#F59E0B','#F59E0B'],
+      borderRadius: 5,
+      barPercentage: 0.65
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: {
+        min: 0, max: 3,
+        ticks: { callback: v => ['','Medium','High','Critical'][v], font: { size: 10 } },
+        grid: { color: '#F3F4F6' }
+      },
+      y: { grid: { display: false }, ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+// PageSpeed Mobile vs Desktop
+new Chart(document.getElementById('pagespeedChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Performance', 'Accessibility', 'Best Practices', 'SEO'],
+    datasets: [
+      { label: 'Mobile', data: [28, 82, 96, 90], backgroundColor: '#EF4444', borderRadius: 5, barPercentage: 0.4 },
+      { label: 'Desktop', data: [71, 82, 96, 90], backgroundColor: '#10B981', borderRadius: 5, barPercentage: 0.4 }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12, padding: 10 } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      y: { min: 0, max: 100, ticks: { callback: v => v, font: { size: 10 } }, grid: { color: '#F3F4F6' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('auditChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Markups', 'Site Perf.', 'Int. Linking', 'HTTPS', 'Int. SEO', 'Crawlability', 'AI Health', 'Site Health'],
+    datasets: [{
+      label: 'Score %',
+      data: [99, 95, 94, 98, 94, 97, 79, 86],
+      backgroundColor: [G, G, G, G, G, G, A, A],
+      borderRadius: 5
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, plugins: { legend: { display: false } },
+    scales: {
+      x: { min: 60, max: 100, ticks: { callback: v => v+'%' }, grid: { color: '#F3F4F6' } },
+      y: { grid: { display: false }, ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// 8 — Intent Distribution
+new Chart(document.getElementById('intentChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Informational 49.4%', 'Commercial 19.3%', 'Navigational 16.7%', 'Transactional 14.6%'],
+    datasets: [{
+      data: [49.4, 19.3, 16.7, 14.6],
+      backgroundColor: [B, A, '#8B5CF6', G],
+      borderWidth: 0, hoverOffset: 4
+    }]
+  },
+  options: {
+    responsive: true, cutout: '60%',
+    plugins: { legend: { position: 'right', labels: { boxWidth: 10, font: { size: 10 } } } }
+  }
+});
+
+// 9 — Radar
+new Chart(document.getElementById('radarChart'), {
+  type: 'radar',
+  data: {
+    labels: ['On-Site Content', 'Technical SEO', 'Off-Site / Links', 'GEO / AI Search', 'Content Strategy', 'Competitive Position'],
+    datasets: [
+      {
+        label: 'Current (Apr 2026)',
+        data: [6, 5, 6, 2, 5, 5],
+        backgroundColor: 'rgba(255,59,89,.1)', borderColor: R, borderWidth: 2,
+        pointBackgroundColor: R, pointRadius: 4
+      },
+      {
+        label: 'After 90-Day Fixes',
+        data: [8, 8, 7, 6, 7, 7],
+        backgroundColor: 'rgba(16,185,129,.1)', borderColor: G, borderWidth: 2,
+        pointBackgroundColor: G, pointRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      r: {
+        min: 0, max: 10, ticks: { stepSize: 2, backdropColor: 'transparent', font: { size: 10 } },
+        grid: { color: '#E5E7EB' },
+        pointLabels: { font: { size: 11, weight: '600' } }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>

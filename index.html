@@ -210,15 +210,114 @@ footer strong{color:var(--gray-600)}
 .serp-cmp .num-strong{color:var(--green);font-size:.78rem;font-weight:700;text-align:center}
 
 /* ──── RESPONSIVE ──── */
+
+/* Tablet & large phone (≤860px) */
 @media(max-width:860px){
-.hero-inner,.g2,.g2-wide,.g2-tall,.g3,.roadmap-grid,.score-row{grid-template-columns:1fr}
-.nav-links{display:none}
-.kpi-row{grid-template-columns:1fr 1fr}
-.hero-kpis{gap:1.2rem}
+  /* Grids */
+  .hero-inner,.g2,.g2-wide,.g2-tall,.g3,.roadmap-grid{grid-template-columns:1fr}
+  .score-row{grid-template-columns:repeat(3,1fr)}
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .hero-kpis{gap:1.2rem;flex-wrap:wrap}
+
+  /* Nav — scrollable pill row instead of hidden */
+  nav{height:auto;padding:.5rem 1rem;flex-direction:column;align-items:flex-start;gap:.4rem}
+  .nav-brand{font-size:.72rem}
+  .nav-links{display:flex;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:.3rem;padding-bottom:.4rem;scrollbar-width:none;width:100%}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links li{flex-shrink:0}
+  .nav-links a{font-size:.62rem;padding:.25rem .55rem .25rem .4rem;white-space:nowrap}
+
+  /* Hero */
+  .hero{padding:2rem 5% 2.5rem}
+  .hero-verdict{margin-top:.5rem}
+
+  /* Pages */
+  .page{padding:2.5rem 4%}
+
+  /* Tables — horizontally scrollable */
+  .ctable,.dtable,.serp-cmp{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+  .ctable td,.dtable td,.serp-cmp td,.ctable th,.dtable th,.serp-cmp th{white-space:normal;min-width:90px}
+
+  /* Score cells */
+  .score-num{font-size:2rem}
+  .score-cell{padding:.9rem .6rem}
+
+  /* Traffic bar */
+  .tpage-bar-wrap{width:70px}
+
+  /* Geo stats */
+  .geo-stats{gap:1.2rem}
+  .geo-dark{padding:1.5rem}
+
+  /* Chart cards */
+  .cc{padding:1.1rem}
+
+  /* Issue cards */
+  .issue{flex-wrap:wrap}
+
+  /* KPI card values */
+  .kcard-val{font-size:1.5rem}
+
+  /* Callout */
+  .callout{padding:.9rem 1rem}
+
+  /* Comparison table min-width so it stays readable */
+  .ctable{min-width:520px}
+  .dtable{min-width:480px}
+  .serp-cmp{min-width:420px}
 }
+
+/* Small phone (≤480px) */
+@media(max-width:480px){
+  /* Score row — 2 columns */
+  .score-row{grid-template-columns:repeat(2,1fr)}
+
+  /* Pages — tighter */
+  .page{padding:2rem 4%}
+  .hero{padding:1.5rem 4% 2rem}
+
+  /* KPI row — full width each */
+  .kpi-row{grid-template-columns:1fr 1fr}
+
+  /* Hero title */
+  h1.hero-title{font-size:2rem}
+
+  /* Hero verdict score */
+  .verdict-score-num{font-size:2.8rem}
+
+  /* Hide traffic bar on very small screens */
+  .tpage-bar-wrap{display:none}
+
+  /* tpage URL — truncate shorter */
+  .tpage-url{max-width:180px}
+
+  /* Section title */
+  .sec-title{font-size:1.5rem}
+
+  /* Geo dark block */
+  .geo-dark{padding:1.1rem}
+  .geo-dark h3{font-size:1.2rem}
+
+  /* Roadmap items */
+  .rphase-name{font-size:.95rem}
+
+  /* Issue badge wrapping */
+  .issue-badge{align-self:flex-start}
+
+  /* KPI card */
+  .kcard-val{font-size:1.4rem}
+  .kcard{padding:1rem}
+
+  /* Serp grid */
+  .serp-grid{grid-template-columns:1fr 1fr}
+
+  /* Footer */
+  footer{font-size:.7rem;padding:1.5rem 1rem}
+}
+
 @media print{
-nav{position:relative}
-.page{page-break-inside:avoid;break-inside:avoid}
+  nav{position:relative}
+  .page{page-break-inside:avoid;break-inside:avoid}
 }
 </style>
 </head>
